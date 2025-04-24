@@ -18,13 +18,17 @@ public class Motoqueiro extends User{
     private String cnh;
 
 
+    @OneToOne(mappedBy = "motoqueiro")
     private Moto moto;
+
+    @Embedded
     private Endereco endereco;
 
 
 
-    public Motoqueiro(String nomeUser, Calendar dataAniversario, String cpfUser, String endereco) {
-        super(nomeUser, dataAniversario, cpfUser, endereco);
+    public Motoqueiro(String nomeUser, Calendar dataAniversario, String cpfUser, Endereco endereco) {
+        super(nomeUser, dataAniversario, cpfUser);
+        this.endereco = endereco;
     }
     public Motoqueiro() {
     }

@@ -20,14 +20,10 @@ public abstract class User {
     @Column(name = "cpf_usuario", nullable = false, length = 11)
     private String cpfUser;
 
-    @Column(name = "endereco_usuario", nullable = false)
-    private String endereco;
-
-    public User(String nomeUser, Calendar dataAniversario, String cpfUser, String endereco) {
+    public User(String nomeUser, Calendar dataAniversario, String cpfUser) {
         this.nomeUser = nomeUser;
         this.dataAniversario = dataAniversario;
-        this.cpfUser = cpfUser;
-        this.endereco = endereco;
+        setCpfUser(cpfUser);
     }
 
     public User() {
@@ -51,18 +47,43 @@ public abstract class User {
     }
 
     public String getCpfUser() {
-        return cpfUser;
+        return formatarCpf(this.cpfUser);
     }
 
-    public void setCpfUser(String cpfUser) {
-        this.cpfUser = cpfUser;
+    public void setCpfUser(String cpf) {
+        if (!validarCpf(cpf)) {
+            throw new IllegalArgumentException("CPF inválido");
+        }
+        this.cpfUser = cpf.replaceAll("[^0-9]", "");
     }
 
-    public String getEndereco() {
-        return endereco;
+
+    private static boolean validarCpf(String cpf) {
+        cpf = cpf.replaceAll("[^0-9]", "");
+
+        if (cpf.length() != 11 || cpf.matches("(\\d)\\1{10}")) {
+            return false;
+        }
+
+        int soma = 0;
+        for (int i = 0; i < 9; i++) {
+            soma += (cpf.charAt(i) - '0') * (10 - i);
+        }
+        int digito1 = 11 - (soma % 11);
+        if (digito1 > 9) digito1 = 0;
+
+        soma = 0;
+        for (int i = 0; i < 10; i++) {
+            soma += (cpf.charAt(i) - '0') * (11 - i);
+        }
+        int digito2 = 11 - (soma % 11);
+        if (digito2 > 9) digito2 = 0;
+
+        return (cpf.charAt(9) - '0' == digito1) && (cpf.charAt(10) - '0' == digito2);
     }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
+    private static String formatarCpf(String cpf) {
+        return cpf.replaceAll("(\\d{3})(\\d{3})(\\d{3})(\\d{2})", "$1.$2.$3-$4");
     }
+
 }
