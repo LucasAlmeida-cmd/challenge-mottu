@@ -7,7 +7,7 @@ import java.util.Calendar;
 @Entity
 @Table(name = "tb_user_admin")
 @SequenceGenerator(name = "admin", sequenceName = "SQ_USER_ADMIN", allocationSize = 1)
-public class Administrator extends User{
+public class Administrador extends User{
 
     @Id
     @Column(name = "idAdmin")
@@ -15,11 +15,11 @@ public class Administrator extends User{
     private Long id;
 
 
-    public Administrator(String nomeUser, Calendar dataAniversario, String cpfUser, String endereco) {
-        super(nomeUser, dataAniversario, cpfUser, endereco);
+    public Administrador(String nomeUser, Calendar dataAniversario, String cpfUser) {
+        super(nomeUser, dataAniversario, cpfUser);
     }
 
-    public Administrator() {
+    public Administrador() {
         super();
     }
 
