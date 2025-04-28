@@ -35,9 +35,10 @@ public class AdministradorService {
 
     public void removerAdmin(String cpf) {
         String cpfLimpo = cpf.replaceAll("[^0-9]", "");
-
         Administrador administrador = repository.findByCpfUser(cpfLimpo);
-
+        if (administrador == null){
+            throw new UsuarioNotFoundException(cpf);
+        }
         repository.deleteById(administrador.getId());
     }
 

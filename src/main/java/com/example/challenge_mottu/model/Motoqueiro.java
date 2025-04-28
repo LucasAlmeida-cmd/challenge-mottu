@@ -26,9 +26,10 @@ public class Motoqueiro extends User{
 
 
 
-    public Motoqueiro(String nomeUser, Calendar dataAniversario, String cpfUser, Endereco endereco) {
+    public Motoqueiro(String nomeUser, Calendar dataAniversario, String cpfUser, Endereco endereco, String cnh) {
         super(nomeUser, dataAniversario, cpfUser);
         this.endereco = endereco;
+        this.cnh = cnh;
     }
     public Motoqueiro() {
     }
@@ -39,5 +40,29 @@ public class Motoqueiro extends User{
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getCnh() {
+        return cnh;
+    }
+
+    public void setCnh(String cnh) {
+        this.cnh = cnh;
+    }
+
+    public Moto getMoto() {
+        return moto;
+    }
+
+    public void setMoto(Moto moto) {
+        this.moto = moto;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 }

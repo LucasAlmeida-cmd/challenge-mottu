@@ -16,7 +16,7 @@ public class ViaCepService {
     }
 
    public Endereco buscarEnderecoPorCEP(String cep){
-       String urlVia = "viacep.com.br/ws/"+ cep +"/json/";
+       String urlVia = "https://viacep.com.br/ws/"+ cep +"/json/";
 
        EnderecoDTO response = restTemplate.getForObject(urlVia, EnderecoDTO.class);
 
