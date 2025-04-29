@@ -18,6 +18,9 @@ public class Moto {
     @Column(name = "ano_moto", nullable = false)
     private int anoMoto;
 
+    @Column(name = "chassi_moto", nullable = false)
+    private String chassi ;
+
     @Column(name = "status_moto", nullable = false)
     private StatusMoto status;
 
@@ -25,9 +28,12 @@ public class Moto {
     @JoinColumn(name = "idMotoqueiro")
     private Motoqueiro motoqueiro;
 
-    public Moto(String modeloMoto, int anoMoto, StatusMoto status, Motoqueiro motoqueiro) {
+
+
+    public Moto(String modeloMoto, int anoMoto, String chassi, StatusMoto status, Motoqueiro motoqueiro) {
         this.modeloMoto = modeloMoto;
         this.anoMoto = anoMoto;
+        this.chassi = chassi;
         this.status = status;
         this.motoqueiro = motoqueiro;
     }
@@ -41,6 +47,14 @@ public class Moto {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getChassi() {
+        return chassi;
+    }
+
+    public void setChassi(String chassi) {
+        this.chassi = chassi;
     }
 
     public String getModeloMoto() {
