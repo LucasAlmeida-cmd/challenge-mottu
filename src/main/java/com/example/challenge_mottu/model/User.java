@@ -47,14 +47,24 @@ public abstract class User {
     }
 
     public String getCpfUser() {
-        return formatarCpf(this.cpfUser);
+        return this.cpfUser;
+    }
+
+    public String getCpfUserFormatado() {
+        return cpfUser != null ?
+                cpfUser.replaceAll("(\\d{3})(\\d{3})(\\d{3})(\\d{2})", "$1.$2.$3-$4") :
+                null;
     }
 
     public void setCpfUser(String cpf) {
-        if (!validarCpf(cpf)) {
+        if (cpf == null) {
+            throw new IllegalArgumentException("CPF não pode ser nulo");
+        }
+        String cpfNumerico = cpf.replaceAll("[^0-9]", "");
+        if (!validarCpf(cpfNumerico)) {
             throw new IllegalArgumentException("CPF inválido");
         }
-        this.cpfUser = cpf.replaceAll("[^0-9]", "");
+        this.cpfUser = cpfNumerico;
     }
 
 
