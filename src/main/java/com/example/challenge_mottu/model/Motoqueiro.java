@@ -1,5 +1,6 @@
 package com.example.challenge_mottu.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Calendar;
@@ -19,6 +20,7 @@ public class Motoqueiro extends User{
 
 
     @OneToOne(mappedBy = "motoqueiro")
+    @JsonIgnore
     private Moto moto;
 
     @Embedded
