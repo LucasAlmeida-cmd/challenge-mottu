@@ -1,6 +1,5 @@
 package com.example.challenge_mottu.controller;
 
-import com.example.challenge_mottu.model.Patio;
 import com.example.challenge_mottu.model.Secao;
 import com.example.challenge_mottu.records.SecaoRecord;
 import com.example.challenge_mottu.service.SecaoService;

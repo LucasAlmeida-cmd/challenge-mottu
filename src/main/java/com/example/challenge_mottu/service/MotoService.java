@@ -4,18 +4,15 @@ import com.example.challenge_mottu.exceptions.MotoNotFoundException;
 import com.example.challenge_mottu.exceptions.VagaNotFoundException;
 import com.example.challenge_mottu.model.Moto;
 import com.example.challenge_mottu.model.Motoqueiro;
-import com.example.challenge_mottu.model.Secao;
 import com.example.challenge_mottu.model.Vaga;
 import com.example.challenge_mottu.records.MotoRecord;
 import com.example.challenge_mottu.repository.MotoRepository;
 import com.example.challenge_mottu.repository.MotoqueiroRepository;
-import com.example.challenge_mottu.repository.SecaoRepository;
 import com.example.challenge_mottu.repository.VagaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class MotoService {
