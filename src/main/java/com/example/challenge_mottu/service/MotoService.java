@@ -1,14 +1,21 @@
 package com.example.challenge_mottu.service;
 
 import com.example.challenge_mottu.exceptions.MotoNotFoundException;
+import com.example.challenge_mottu.exceptions.VagaNotFoundException;
 import com.example.challenge_mottu.model.Moto;
 import com.example.challenge_mottu.model.Motoqueiro;
+import com.example.challenge_mottu.model.Secao;
+import com.example.challenge_mottu.model.Vaga;
+import com.example.challenge_mottu.records.MotoRecord;
 import com.example.challenge_mottu.repository.MotoRepository;
 import com.example.challenge_mottu.repository.MotoqueiroRepository;
+import com.example.challenge_mottu.repository.SecaoRepository;
+import com.example.challenge_mottu.repository.VagaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MotoService {
@@ -20,7 +27,29 @@ public class MotoService {
     @Autowired
     MotoqueiroRepository motoqueiroRepository;
 
-    public Moto cadastrar(Moto moto){
+    @Autowired
+    VagaRepository vagaRepository;
+
+    public Moto cadastrar(MotoRecord motoObj){
+        String cpfLimpo = motoObj.motoqueiroCpf().replaceAll("[^0-9]", "");
+        Motoqueiro motoqueiro = motoqueiroRepository.findByCpfUser(cpfLimpo);
+        Vaga vaga = vagaRepository.findByPatioSecaoENumero(
+                        motoObj.patioIdentificacao(),
+                        motoObj.secaoIdentificacao(),
+                        motoObj.vagaIdentificacao())
+                .orElseThrow(() -> new VagaNotFoundException(
+                        "Vaga não encontrada com os critérios: " +
+                                "Pátio='" + motoObj.patioIdentificacao() + "', " +
+                                "Seção='" + motoObj.secaoIdentificacao() + "', " +
+                                "Número=" + motoObj.vagaIdentificacao()));
+        Moto moto = new Moto();
+        moto.setModeloMoto(motoObj.modeloMoto());
+        moto.setAnoMoto(motoObj.anoMoto());
+        moto.setChassi(motoObj.chassi());
+        moto.setStatus(motoObj.status());
+        moto.setMotoqueiro(motoqueiro);
+        moto.setVaga(vaga);
+        vagaRepository.save(vaga);
         return repository.save(moto);
     }
 
@@ -31,7 +60,6 @@ public class MotoService {
     public Moto atualizaPeloChassi(String chassi, Moto moto){
         Moto moto1 = repository.findByChassi(chassi);
         if (moto1 == null)throw new MotoNotFoundException(chassi);
-
         moto1.setAnoMoto(moto.getAnoMoto());
         moto1.setModeloMoto(moto.getModeloMoto());
         moto1.setMotoqueiro(moto.getMotoqueiro());

@@ -1,7 +1,9 @@
 package com.example.challenge_mottu.service;
 
 import com.example.challenge_mottu.exceptions.UsuarioNotFoundException;
+import com.example.challenge_mottu.model.Moto;
 import com.example.challenge_mottu.model.Motoqueiro;
+import com.example.challenge_mottu.repository.MotoRepository;
 import com.example.challenge_mottu.repository.MotoqueiroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,8 @@ public class MotoqueiroService {
     MotoqueiroRepository repository;
     @Autowired
     ViaCepService viaCepService;
+    @Autowired
+    MotoRepository motoRepository;
 
 
     public Motoqueiro cadastrar(Motoqueiro motoqueiro){
@@ -42,6 +46,11 @@ public class MotoqueiroService {
     public void remover(String cpf){
         String cpfLimpo = cpf.replaceAll("[^0-9]", "");
         Motoqueiro motoqueiro = repository.findByCpfUser(cpfLimpo);
+        List<Moto> motos = motoRepository.findByMotoqueiro(motoqueiro);
+        for (Moto moto : motos) {
+            moto.setMotoqueiro(null);
+            motoRepository.save(moto);
+        }
         if (motoqueiro == null){
             throw new UsuarioNotFoundException(cpf);
         }

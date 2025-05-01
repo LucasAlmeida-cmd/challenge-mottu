@@ -1,6 +1,7 @@
 package com.example.challenge_mottu.controller;
 
 import com.example.challenge_mottu.model.Moto;
+import com.example.challenge_mottu.records.MotoRecord;
 import com.example.challenge_mottu.service.MotoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +17,7 @@ public class MotoController {
     MotoService motoService;
 
     @PostMapping
-    public ResponseEntity<Moto> adicionar(@RequestBody Moto moto){
+    public ResponseEntity<Moto> adicionar(@RequestBody MotoRecord moto){
         Moto moto1 = motoService.cadastrar(moto);
         return ResponseEntity.ok(moto1);
     }

@@ -1,5 +1,6 @@
 package com.example.challenge_mottu.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -21,6 +22,7 @@ public class Moto {
     @Column(name = "chassi_moto", nullable = false)
     private String chassi ;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "status_moto", nullable = false)
     private StatusMoto status;
 
@@ -29,13 +31,19 @@ public class Moto {
     private Motoqueiro motoqueiro;
 
 
+    @OneToOne
+    @JoinColumn(name = "vaga_id")
+    @JsonBackReference
+    private Vaga vaga;
 
-    public Moto(String modeloMoto, int anoMoto, String chassi, StatusMoto status, Motoqueiro motoqueiro) {
+
+    public Moto(String modeloMoto, int anoMoto, String chassi, StatusMoto status, Motoqueiro motoqueiro,Vaga vaga) {
         this.modeloMoto = modeloMoto;
         this.anoMoto = anoMoto;
         this.chassi = chassi;
         this.status = status;
         this.motoqueiro = motoqueiro;
+        this.vaga = vaga;
     }
 
     public Moto(){
@@ -43,6 +51,14 @@ public class Moto {
 
     public Long getId() {
         return id;
+    }
+
+    public Vaga getVaga() {
+        return vaga;
+    }
+
+    public void setVaga(Vaga vaga) {
+        this.vaga = vaga;
     }
 
     public void setId(Long id) {

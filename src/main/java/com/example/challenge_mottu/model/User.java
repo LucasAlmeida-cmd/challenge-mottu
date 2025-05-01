@@ -17,7 +17,7 @@ public abstract class User {
     @Column(name = "data_aniversario_usuario", nullable = false)
     private Calendar dataAniversario;
 
-    @Column(name = "cpf_usuario", nullable = false, length = 14)
+    @Column(name = "cpf_usuario", nullable = false, length = 14, unique = true)
     private String cpfUser;
 
     public User(String nomeUser, Calendar dataAniversario, String cpfUser) {
