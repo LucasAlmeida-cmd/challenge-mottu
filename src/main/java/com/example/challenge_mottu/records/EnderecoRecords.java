@@ -1,6 +1,9 @@
 package com.example.challenge_mottu.records;
 
-public record EnderecoRecords(String cep,
+import jakarta.validation.constraints.NotBlank;
+
+public record EnderecoRecords(@NotBlank(message = "CEP não pode ficar em branco.")
+                              String cep,
                               String logradouro,
                               String complemento,
                               String bairro,

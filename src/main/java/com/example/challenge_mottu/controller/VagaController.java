@@ -4,6 +4,7 @@ package com.example.challenge_mottu.controller;
 import com.example.challenge_mottu.model.Vaga;
 import com.example.challenge_mottu.records.VagaRecord;
 import com.example.challenge_mottu.service.VagaService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class VagaController {
 
 
     @PostMapping
-    public ResponseEntity<Vaga> adicionar(@RequestBody VagaRecord vaga){
+    public ResponseEntity<Vaga> adicionar(@RequestBody @Valid VagaRecord vaga){
         return ResponseEntity.ok(vagaService.adicionar(vaga));
     }
 
