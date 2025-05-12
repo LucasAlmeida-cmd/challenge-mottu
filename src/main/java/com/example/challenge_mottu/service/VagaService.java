@@ -5,7 +5,7 @@ import com.example.challenge_mottu.exceptions.VagaNotFoundException;
 import com.example.challenge_mottu.model.Patio;
 import com.example.challenge_mottu.model.Secao;
 import com.example.challenge_mottu.model.Vaga;
-import com.example.challenge_mottu.records.VagaRecord;
+import com.example.challenge_mottu.records_DTOs.VagaRecord;
 import com.example.challenge_mottu.repository.PatioRepository;
 import com.example.challenge_mottu.repository.SecaoRepository;
 import com.example.challenge_mottu.repository.VagaRepository;

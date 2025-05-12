@@ -1,4 +1,4 @@
-package com.example.challenge_mottu.records;
+package com.example.challenge_mottu.records_DTOs;
 
 import jakarta.validation.constraints.NotBlank;
 

@@ -2,8 +2,8 @@ package com.example.challenge_mottu.service;
 
 import com.example.challenge_mottu.exceptions.PatioNotFoundException;
 import com.example.challenge_mottu.model.Patio;
-import com.example.challenge_mottu.records.PatioRecord;
-import com.example.challenge_mottu.records.SecaoResumoRecord;
+import com.example.challenge_mottu.records_DTOs.PatioRecord;
+import com.example.challenge_mottu.records_DTOs.SecaoResumoRecord;
 import com.example.challenge_mottu.repository.PatioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,7 @@
 package com.example.challenge_mottu.controller;
 
 import com.example.challenge_mottu.model.Moto;
-import com.example.challenge_mottu.records.MotoRecord;
+import com.example.challenge_mottu.records_DTOs.MotoRecord;
 import com.example.challenge_mottu.service.MotoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

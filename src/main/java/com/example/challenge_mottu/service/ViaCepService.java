@@ -1,7 +1,7 @@
 package com.example.challenge_mottu.service;
 
 import com.example.challenge_mottu.model.Endereco;
-import com.example.challenge_mottu.records.EnderecoRecords;
+import com.example.challenge_mottu.records_DTOs.EnderecoRecords;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;

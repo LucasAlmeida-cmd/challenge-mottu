@@ -1,7 +1,7 @@
 package com.example.challenge_mottu.controller;
 
 import com.example.challenge_mottu.model.Patio;
-import com.example.challenge_mottu.records.PatioRecord;
+import com.example.challenge_mottu.records_DTOs.PatioRecord;
 import com.example.challenge_mottu.service.PatioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -2,7 +2,7 @@ package com.example.challenge_mottu.controller;
 
 
 import com.example.challenge_mottu.model.Vaga;
-import com.example.challenge_mottu.records.VagaRecord;
+import com.example.challenge_mottu.records_DTOs.VagaRecord;
 import com.example.challenge_mottu.service.VagaService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
