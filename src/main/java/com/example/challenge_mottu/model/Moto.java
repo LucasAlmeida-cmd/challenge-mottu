@@ -2,10 +2,12 @@ package com.example.challenge_mottu.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
 @Table(name = "tb_moto")
 @SequenceGenerator(name = "moto", sequenceName = "SQ_USER_MOTO", allocationSize = 1)
+@Data
 public class Moto {
 
     @Id
@@ -49,59 +51,4 @@ public class Moto {
     public Moto(){
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public Vaga getVaga() {
-        return vaga;
-    }
-
-    public void setVaga(Vaga vaga) {
-        this.vaga = vaga;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getChassi() {
-        return chassi;
-    }
-
-    public void setChassi(String chassi) {
-        this.chassi = chassi;
-    }
-
-    public String getModeloMoto() {
-        return modeloMoto;
-    }
-
-    public void setModeloMoto(String modeloMoto) {
-        this.modeloMoto = modeloMoto;
-    }
-
-    public int getAnoMoto() {
-        return anoMoto;
-    }
-
-    public void setAnoMoto(int anoMoto) {
-        this.anoMoto = anoMoto;
-    }
-
-    public StatusMoto getStatus() {
-        return status;
-    }
-
-    public void setStatus(StatusMoto status) {
-        this.status = status;
-    }
-
-    public Motoqueiro getMotoqueiro() {
-        return motoqueiro;
-    }
-
-    public void setMotoqueiro(Motoqueiro motoqueiro) {
-        this.motoqueiro = motoqueiro;
-    }
 }

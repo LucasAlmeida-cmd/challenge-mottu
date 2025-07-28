@@ -2,12 +2,14 @@ package com.example.challenge_mottu.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "tb_patio")
+@Data
 public class Patio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,44 +34,4 @@ public class Patio {
     }
 
     public Patio(){}
-
-    public String getIdentificacao() {
-        return identificacao;
-    }
-
-    public void setIdentificacao(String identificacao) {
-        this.identificacao = identificacao;
-    }
-
-    public Long getIdPatio() {
-        return idPatio;
-    }
-
-    public void setIdPatio(Long idPatio) {
-        this.idPatio = idPatio;
-    }
-
-    public double getLargura() {
-        return largura;
-    }
-
-    public void setLargura(double largura) {
-        this.largura = largura;
-    }
-
-    public double getComprimento() {
-        return comprimento;
-    }
-
-    public void setComprimento(double comprimento) {
-        this.comprimento = comprimento;
-    }
-
-    public List<Secao> getSecoes() {
-        return secoes;
-    }
-
-    public void setSecoes(List<Secao> secoes) {
-        this.secoes = secoes;
-    }
 }

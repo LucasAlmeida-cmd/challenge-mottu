@@ -2,12 +2,14 @@ package com.example.challenge_mottu.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.Calendar;
 
 @Entity
 @Table(name = "tb_user_motoqueiro")
 @SequenceGenerator(name = "motoqueiro", sequenceName = "SQ_USER_MOTOQUEIRO", allocationSize = 1)
+@Data
 public class Motoqueiro extends User{
 
     @Id
@@ -36,35 +38,4 @@ public class Motoqueiro extends User{
     public Motoqueiro() {
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getCnh() {
-        return cnh;
-    }
-
-    public void setCnh(String cnh) {
-        this.cnh = cnh;
-    }
-
-    public Moto getMoto() {
-        return moto;
-    }
-
-    public void setMoto(Moto moto) {
-        this.moto = moto;
-    }
-
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
 }
