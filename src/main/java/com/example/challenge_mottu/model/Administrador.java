@@ -2,7 +2,7 @@ package com.example.challenge_mottu.model;
 
 import jakarta.persistence.*;
 
-import java.util.Calendar;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "tb_user_admin")
@@ -15,7 +15,7 @@ public class Administrador extends User{
     private Long id;
 
 
-    public Administrador(String nomeUser, Calendar dataAniversario, String cpfUser) {
+    public Administrador(String nomeUser, LocalDate dataAniversario, String cpfUser) {
         super(nomeUser, dataAniversario, cpfUser);
     }
 

@@ -4,27 +4,35 @@ import com.example.challenge_mottu.model.Administrador;
 import com.example.challenge_mottu.service.AdministradorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/admin")
 public class AdministradorController {
 
     @Autowired
     AdministradorService service;
 
-    @PostMapping
-    public ResponseEntity<Administrador> adicionarAdmin(@RequestBody Administrador administrador){
-        Administrador administradorCriado = service.adicionar(administrador);
-        return ResponseEntity.ok(administradorCriado);
+    @GetMapping
+    public String listarTodos(Model model){
+        model.addAttribute("administradores", service.listarTodos());
+        return "admin/listar";
     }
 
-    @GetMapping
-    public ResponseEntity<List<Administrador>> listarTodos(){
-        List<Administrador> lista = service.listarTodos();
-        return ResponseEntity.ok(lista);
+    @GetMapping("/novo")
+    public String novoAdminForm(Model model) {
+        model.addAttribute("administrador", new Administrador());
+        return "admin/formulario-admin";
+    }
+
+    @PostMapping
+    public String adicionarAdmin(Administrador administrador){
+        service.adicionar(administrador);
+        return "redirect:/admin" ;
     }
 
     @PutMapping

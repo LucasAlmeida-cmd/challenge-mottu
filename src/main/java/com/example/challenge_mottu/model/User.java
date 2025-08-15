@@ -4,7 +4,9 @@ import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.util.Calendar;
 
 @MappedSuperclass
@@ -14,13 +16,14 @@ public abstract class User {
     private String nomeUser;
 
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     @Column(name = "data_aniversario_usuario", nullable = false)
-    private Calendar dataAniversario;
+    private LocalDate dataAniversario;
 
     @Column(name = "cpf_usuario", nullable = false, length = 14, unique = true)
     private String cpfUser;
 
-    public User(String nomeUser, Calendar dataAniversario, String cpfUser) {
+    public User(String nomeUser, LocalDate dataAniversario, String cpfUser) {
         this.nomeUser = nomeUser;
         this.dataAniversario = dataAniversario;
         setCpfUser(cpfUser);
@@ -38,11 +41,11 @@ public abstract class User {
         this.nomeUser = nomeUser;
     }
 
-    public Calendar getDataAniversario() {
+    public LocalDate getDataAniversario() {
         return dataAniversario;
     }
 
-    public void setDataAniversario(Calendar dataAniversario) {
+    public void setDataAniversario(LocalDate dataAniversario) {
         this.dataAniversario = dataAniversario;
     }
 

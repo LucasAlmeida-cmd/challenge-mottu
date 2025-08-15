@@ -3,6 +3,7 @@ package com.example.challenge_mottu.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Calendar;
 
 @Entity
@@ -28,7 +29,7 @@ public class Motoqueiro extends User{
 
 
 
-    public Motoqueiro(String nomeUser, Calendar dataAniversario, String cpfUser, Endereco endereco, String cnh) {
+    public Motoqueiro(String nomeUser, LocalDate dataAniversario, String cpfUser, Endereco endereco, String cnh) {
         super(nomeUser, dataAniversario, cpfUser);
         this.endereco = endereco;
         this.cnh = cnh;

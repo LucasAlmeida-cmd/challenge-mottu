@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Administradores</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Lista de Administradores</h1>
+<div class="container-link">
+    <a href="/admin/novo">Adicionar Novo Administrador</a>
+</div>
+<ul>
+    <li th:each="administrador : ${administradores}">
+        <h2 th:text="${administrador.nomeUser}">Nome do Admin</h2>
+        <p th:text="${administrador.cpfUser}">CPF do Admin</p>
+        <p th:text="${administrador.dataAniversario}">Data de aniversario do Admin</p>
+    </li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Novo Administrador</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+<body>
+<h1>Novo Administrador</h1>
+<form action="#" th:action="@{/admin}" th:object="${administrador}" method="post">
+    <div>
+        <label>Nome Admin:</label>
+        <input type="text" th:field="*{nomeUser}" />
+    </div>
+    <div>
+        <label>Aniversario:</label>
+        <textarea type="text" th:field="*{dataAniversario}" placeholder="dd-mm-aaaa"></textarea>
+    </div>
+    <div>
+        <label>CPF:</label>
+        <textarea th:field="*{cpfUser}"></textarea>
+    </div>
+    <div>
+        <button type="submit">Salvar</button>
+    </div>
+</form>
+</body>
+</html>
