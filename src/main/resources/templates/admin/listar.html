@@ -10,11 +10,30 @@
 <div class="container-link">
     <a href="/admin/novo">Adicionar Novo Administrador</a>
 </div>
+
+<div>
+    <h1>Buscar Administrador por CPF:</h1>
+    <form th:action="@{/admin/buscarPorCpf}" method="get">
+        <input type="text" name="cpf" placeholder="Digite o CPF"/>
+        <button type="submit">Buscar</button>
+    </form>
+</div>
+
 <ul>
     <li th:each="administrador : ${administradores}">
         <h2 th:text="${administrador.nomeUser}">Nome do Admin</h2>
         <p th:text="${administrador.cpfUser}">CPF do Admin</p>
         <p th:text="${administrador.dataAniversario}">Data de aniversario do Admin</p>
+
+        <form th:action="@{'/admin/editar/' + ${administrador.cpfUser}}" method="get" style="display:inline;">
+            <button type="submit">Atualizar</button>
+        </form>
+
+        <form th:action="@{'/admin/' + ${administrador.cpfUser}}" method="post" style="display:inline;">
+            <input type="hidden" name="_method" value="delete" />
+            <button type="submit" onclick="return confirm('Tem certeza que deseja deletar?')">Deletar</button>
+        </form>
+
     </li>
 </ul>
 </body>

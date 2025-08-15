@@ -14,12 +14,12 @@
         <input type="text" th:field="*{nomeUser}" />
     </div>
     <div>
-        <label>Aniversario:</label>
-        <textarea type="text" th:field="*{dataAniversario}" placeholder="dd-mm-aaaa"></textarea>
+        <label>Aniversário:</label>
+        <input type="date" th:field="*{dataAniversario}" />
     </div>
     <div>
         <label>CPF:</label>
-        <textarea th:field="*{cpfUser}"></textarea>
+        <input type="text" th:field="*{cpfUser}" />
     </div>
     <div>
         <button type="submit">Salvar</button>

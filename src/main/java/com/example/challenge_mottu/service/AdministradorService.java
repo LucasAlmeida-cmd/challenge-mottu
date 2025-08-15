@@ -42,4 +42,8 @@ public class AdministradorService {
         repository.deleteById(administrador.getId());
     }
 
+    public Administrador buscarPorCpf(String cpf) {
+        return repository.findByCpfUser(cpf);
+    }
+
 }

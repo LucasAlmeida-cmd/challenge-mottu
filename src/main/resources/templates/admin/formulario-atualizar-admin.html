@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Atualizar Administrador</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+<body>
+<h1>Atualizar Administrador</h1>
+
+
+<form th:action="@{/admin/editar/{cpf}(cpf=${administrador.cpfUser})}"
+      th:object="${administrador}"
+      method="post">
+    <input type="hidden" name="_method" value="put" />
+
+    <label>Nome:</label>
+    <input type="text" th:field="*{nomeUser}" required />
+
+    <label>Data de aniversário:</label>
+    <input type="date" th:field="*{dataAniversario}" required />
+
+    <button type="submit">Atualizar</button>
+</form>
+
+</body>
+</html>

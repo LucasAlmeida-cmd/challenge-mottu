@@ -35,17 +35,37 @@ public class AdministradorController {
         return "redirect:/admin" ;
     }
 
-    @PutMapping
-    @RequestMapping("/{cpf}")
-    public ResponseEntity<?> atualizaPeloCpf(@PathVariable String cpf, @RequestBody Administrador administrador){
+    @GetMapping
+    @RequestMapping("/buscarPorCpf")
+    public String atualizaPeloCpf(@RequestParam String cpf, Model model){
         String cpfNumerico = cpf.replaceAll("[^0-9]", "");
-        return ResponseEntity.ok(service.atualizarAdminPorCpf(cpfNumerico,administrador));
+        Administrador admin = service.buscarPorCpf(cpfNumerico);
+        if (admin != null) {
+            model.addAttribute("administradores", List.of(admin)); // retorna só o encontrado
+        } else {
+            model.addAttribute("administradores", List.of()); // lista vazia
+            model.addAttribute("mensagem", "Administrador não encontrado");
+        }
+        return "admin/listar";
+    }
+
+    @GetMapping("/editar/{cpf}")
+    public String carregarFormularioEdicao(@PathVariable String cpf, Model model) {
+        Administrador administrador = service.buscarPorCpf(cpf);
+        model.addAttribute("administrador", administrador);
+        return "admin/formulario-atualizar-admin";
+    }
+
+    @PutMapping("/editar/{cpf}")
+    public String atualizar(@PathVariable String cpf, @ModelAttribute Administrador administrador) {
+        service.atualizarAdminPorCpf(cpf, administrador);
+        return "redirect:/admin";
     }
 
     @DeleteMapping("/{cpf}")
-    public ResponseEntity<Void> deletarPorCpf(@PathVariable String cpf) {
-        service.removerAdmin(cpf);
-        return ResponseEntity.noContent().build();
+    public String deletarPorCpf(@PathVariable String cpf) {
+        service.removerAdmin(cpf.replaceAll("[^0-9]", ""));
+        return "redirect:/admin";
     }
 
 
