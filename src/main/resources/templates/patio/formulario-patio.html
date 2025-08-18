@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Novo Pátio</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+<body>
+<h1>Novo Pátio</h1>
+<form action="#" th:action="@{/patio}" th:object="${patio}" method="post">
+    <div>
+        <label>Identificação Pátio:</label>
+        <input type="text" th:field="*{identificacao}" />
+    </div>
+    <div>
+        <label>Comprimento:</label>
+        <input type="text" th:field="*{comprimento}" />
+    </div>
+    <div>
+        <label>Largura:</label>
+        <input type="text" th:field="*{largura}" />
+    </div>
+    <div>
+        <button type="submit">Salvar</button>
+    </div>
+</form>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Pátios</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Lista de Pátios</h1>
+<div class="container-link">
+    <a href="/patio/novo">Adicionar Novo Pátio</a>
+</div>
+
+<div>
+    <h1>Buscar Pátio pela identificação:</h1>
+    <form th:action="@{/patio/buscarPorIden}" method="get">
+        <input type="text" name="identificacao" placeholder="Digite a Idenfiticação:"/>
+        <button type="submit">Buscar</button>
+    </form>
+</div>
+
+<ul>
+    <li th:each="patio : ${patios}">
+        <h2 th:text="${patio.identificacao}">Identificação Pátio</h2>
+        <p th:text="${patio.comprimento}">Largura</p>
+        <p th:text="${patio.largura}">Comprimento</p>
+
+        <form th:action="@{'/patio/editar/' + ${patio.identificacao}}" method="get" style="display:inline;">
+            <button type="submit">Atualizar</button>
+        </form>
+
+        <form th:action="@{'/patio/' + ${patio.identificacao}}" method="post" style="display:inline;">
+            <input type="hidden" name="_method" value="delete" />
+            <button type="submit" onclick="return confirm('Tem certeza que deseja deletar?')">Deletar</button>
+        </form>
+
+    </li>
+</ul>
+</body>
+</html>

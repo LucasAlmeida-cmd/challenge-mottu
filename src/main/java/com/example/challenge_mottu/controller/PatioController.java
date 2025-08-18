@@ -1,16 +1,19 @@
 package com.example.challenge_mottu.controller;
 
+import com.example.challenge_mottu.model.Administrador;
 import com.example.challenge_mottu.model.Patio;
 import com.example.challenge_mottu.records_DTOs.PatioRecord;
 import com.example.challenge_mottu.service.PatioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/patio")
 public class PatioController {
 
@@ -18,31 +21,54 @@ public class PatioController {
     @Autowired
     PatioService patioService;
 
-    @PostMapping
-    public ResponseEntity<Patio> adicionar(@RequestBody Patio patio){
-        patioService.adicionar(patio);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+    @GetMapping("/novo")
+    public String novoAdminForm(Model model) {
+        model.addAttribute("patio", new Patio());
+        return "patio/formulario-patio";
     }
 
-    @GetMapping("/{ident}")
-    public ResponseEntity<Patio>buscarPorIden(@PathVariable String ident) {
-        return ResponseEntity.ok(patioService.buscarPorInd(ident));
+    @PostMapping
+    public String adicionar(Patio patio){
+        patioService.adicionar(patio);
+        return "redirect:/patio";
+    }
+
+    @GetMapping("/buscarPorIden")
+    public String buscarPorIden(@RequestParam String identificacao, Model model) {
+        Patio patio = patioService.buscarPorInd(identificacao);
+        if (patio != null) {
+            model.addAttribute("patios", List.of(patio));
+        } else {
+            model.addAttribute("patios", List.of());
+            model.addAttribute("mensagem", "Pátio não encontrado");
+        }
+        return "patio/listar";
     }
 
     @GetMapping
-    public ResponseEntity<List<PatioRecord>> listarTodos() {
-        return ResponseEntity.ok(patioService.listarTodos());
+    public String listarTodos(Model model) {
+        model.addAttribute("patios", patioService.listarTodos());
+        return "patio/listar";
     }
 
-    @PutMapping("/{indentificacao}")
-    public ResponseEntity<Patio> atualizar(@PathVariable String indentificacao, @RequestBody Patio patio){
-        return ResponseEntity.ok(patioService.atualizarPatio(indentificacao, patio));
+    @GetMapping("/editar/{indentificacao}")
+    public String carregarFormularioEdicao(@PathVariable String indentificacao, Model model) {
+        Patio patio = patioService.buscarPorInd(indentificacao);
+        model.addAttribute("patio", patio);
+        return "patio/formulario-atualizar-patio";
+    }
+
+    @PutMapping("/editar/{indentificacao}")
+    public String atualizar(@PathVariable String indentificacao, @ModelAttribute Patio patio){
+        System.out.println(patio.getIdentificacao());
+        patioService.atualizarPatio(indentificacao, patio);
+        return "redirect:/patio";
     }
 
     @DeleteMapping("/{indentificacao}")
-    public ResponseEntity<Patio> deletar(@PathVariable String indentificacao){
+    public String deletar(@PathVariable String indentificacao){
         patioService.remover(indentificacao);
-        return ResponseEntity.ok().build();
+        return "redirect:/patio";
     }
 
 

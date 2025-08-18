@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Atualizar Pátio</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+<body>
+<h1>Atualizar Pátio</h1>
+
+
+<form th:action="@{/patio/editar/{indentificacao}(indentificacao=${patio.identificacao})}"
+      th:object="${patio}"
+      method="post">
+    <input type="hidden" name="_method" value="put" />
+
+    <label>Comprimento: </label>
+    <input type="text" th:field="*{comprimento}" required />
+
+    <label>Largura:</label>
+    <input type="text" th:field="*{largura}" required />
+
+    <button type="submit">Atualizar</button>
+</form>
+
+</body>
+</html>
