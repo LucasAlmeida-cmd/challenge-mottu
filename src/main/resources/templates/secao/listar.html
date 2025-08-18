@@ -13,12 +13,28 @@
 
 <div>
     <h1>Buscar Seção pela identificação e identificação do Pátio:</h1>
-    <form th:object="${secao}" th:action="@{/secao/buscarSecaoPorNomeEPatio}" method="get">
-        <input type="text" name="identificacao" placeholder="Digite a Idenfiticação:"/>
-        <input type="text" name="identificacaoPatio" placeholder="Digite a Idenfiticação do Pátio:"/>
+    <form th:action="@{/secao/buscarSecaoPorNomeEPatio}" method="get">
+        <label for="patio">Pátio:</label>
+        <select id="patio" name="identificacaoPatio" required>
+            <option value="">-- Selecione um pátio --</option>
+            <option th:each="secao : ${secoes}"
+                    th:value="${secao.patio.identificacao}"
+                    th:text="${secao.patio.identificacao}">
+            </option>
+        </select>
+
+        <label for="secao">Seção:</label>
+        <select id="secao" name="identificacao" required>
+            <option value="">-- Selecione uma seção --</option>
+            <option th:each="secao : ${secoes}"
+                    th:value="${secao.identificacao}"
+                    th:text="${secao.identificacao}">
+            </option>
+        </select>
         <button type="submit">Buscar</button>
     </form>
 </div>
+
 
 <ul>
     <li th:each="secao : ${secoes}">
