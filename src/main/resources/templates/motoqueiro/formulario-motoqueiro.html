@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Novo Motoqueiro</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+<body>
+<h1>Novo Motoqueiro</h1>
+<form action="#" th:action="@{/motoqueiro}" th:object="${motoqueiro}" method="post">
+    <div>
+        <label>Nome Admin:</label>
+        <input type="text" th:field="*{nomeUser}" />
+    </div>
+    <div>
+        <label>Aniversário:</label>
+        <input type="date" th:field="*{dataAniversario}" />
+    </div>
+    <div>
+        <label>CPF:</label>
+        <input type="text" th:field="*{cpfUser}" />
+    </div>
+    <div>
+        <label>CNH:</label>
+        <input type="text" th:field="*{cnh}" />
+    </div>
+    <div>
+        <label>CEP:</label>
+        <input type="text" th:field="*{endereco.cep}" />
+    </div>
+    <div>
+        <button type="submit">Salvar</button>
+    </div>
+</form>
+</body>
+</html>

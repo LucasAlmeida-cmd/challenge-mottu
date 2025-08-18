@@ -41,9 +41,9 @@ public class AdministradorController {
         String cpfNumerico = cpf.replaceAll("[^0-9]", "");
         Administrador admin = service.buscarPorCpf(cpfNumerico);
         if (admin != null) {
-            model.addAttribute("administradores", List.of(admin)); // retorna só o encontrado
+            model.addAttribute("administradores", List.of(admin));
         } else {
-            model.addAttribute("administradores", List.of()); // lista vazia
+            model.addAttribute("administradores", List.of());
             model.addAttribute("mensagem", "Administrador não encontrado");
         }
         return "admin/listar";

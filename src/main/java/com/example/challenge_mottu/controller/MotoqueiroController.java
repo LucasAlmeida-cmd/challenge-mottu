@@ -3,41 +3,68 @@ package com.example.challenge_mottu.controller;
 import com.example.challenge_mottu.model.Motoqueiro;
 import com.example.challenge_mottu.service.MotoqueiroService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/motoqueiro")
 public class MotoqueiroController {
 
     @Autowired
     MotoqueiroService service;
 
-    @PostMapping
-    public ResponseEntity<Motoqueiro> adicionar(@RequestBody Motoqueiro motoqueiro){
-        Motoqueiro motoqueiro1 = service.cadastrar(motoqueiro);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
-    }
-
     @GetMapping
-    public ResponseEntity<List<Motoqueiro>> listarTodos(){
-        List<Motoqueiro> lista = service.listarTodos();
-        return ResponseEntity.ok(lista);
+    public String listarTodos(Model model){
+        model.addAttribute("motoqueiros", service.listarTodos());
+        return "motoqueiro/listar";
     }
 
-    @PutMapping
-    @RequestMapping("/{cpf}")
-    public ResponseEntity<Motoqueiro> atualizar(@PathVariable String cpf, @RequestBody Motoqueiro motoqueiro){
-        String cpfNumerico = cpf.replaceAll("[^0-9]", "");
-        return ResponseEntity.ok(service.atualiza(cpfNumerico, motoqueiro));
+    @PostMapping
+    public String adicionar(Motoqueiro motoqueiro){
+        service.cadastrar(motoqueiro);
+        return "redirect:/motoqueiro";
+    }
+
+
+    @GetMapping("/novo")
+    public String novomMotoqueiroForm(Model model) {
+        model.addAttribute("motoqueiro", new Motoqueiro());
+        return "motoqueiro/formulario-motoqueiro";
+    }
+
+    @GetMapping("/editar/{cpf}")
+    public String carregarFormularioEdicao(@PathVariable String cpf, Model model) {
+        Motoqueiro motoqueiro = service.buscarPorCpf(cpf);
+        model.addAttribute("motoqueiro", motoqueiro);
+        return "motoqueiro/formulario-atualizar-motoqueiro";
+    }
+
+    @PutMapping("/editar/{cpf}")
+    public String atualizar(@PathVariable String cpf, @ModelAttribute Motoqueiro motoqueiro){
+        service.atualiza(cpf, motoqueiro);
+        return "redirect:/motoqueiro";
     }
 
     @DeleteMapping("/{cpf}")
-    public ResponseEntity<Motoqueiro> deletarPeloCpf(@PathVariable String cpf){
-        service.remover(cpf);
-        return ResponseEntity.noContent().build();
+    public String deletarPeloCpf(@PathVariable String cpf){
+        service.remover(cpf.replaceAll("[^0-9]", ""));
+        return "redirect:/motoqueiro";
+    }
+
+    @GetMapping
+    @RequestMapping("/buscarPorCpf")
+    public String buscarPorCpf(@RequestParam String cpf, Model model){
+        String cpfNumerico = cpf.replaceAll("[^0-9]", "");
+        Motoqueiro motoqueiro = service.buscarPorCpf(cpfNumerico);
+        if (motoqueiro != null) {
+            model.addAttribute("motoqueiros", List.of(motoqueiro));
+        } else {
+            model.addAttribute("motoqueiros", List.of());
+            model.addAttribute("mensagem", "motoqueiros não encontrado");
+        }
+        return "motoqueiro/listar";
     }
 }

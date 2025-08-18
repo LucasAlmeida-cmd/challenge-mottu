@@ -4,16 +4,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.Calendar;
 
 @Entity
 @Table(name = "tb_user_motoqueiro")
-@SequenceGenerator(name = "motoqueiro", sequenceName = "SQ_USER_MOTOQUEIRO", allocationSize = 1)
+@SequenceGenerator(name = "templates/motoqueiro", sequenceName = "SQ_USER_MOTOQUEIRO", allocationSize = 1)
 public class Motoqueiro extends User{
 
     @Id
     @Column(name = "idMotoqueiro")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "motoqueiro")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "templates/motoqueiro")
     private Long id;
 
     @Column(name = "cnh_motoqueiro", nullable = false, length = 9)

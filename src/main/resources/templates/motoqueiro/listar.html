@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Motoqueiros</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Lista de Motoqueiros</h1>
+<div class="container-link">
+    <a href="/motoqueiro/novo">Adicionar Novo Motoqueiro</a>
+</div>
+
+<div>
+    <h1>Buscar Motoqueiro por CPF:</h1>
+    <form th:action="@{/motoqueiro/buscarPorCpf}" method="get">
+        <input type="text" name="cpf" placeholder="Digite o CPF"/>
+        <button type="submit">Buscar</button>
+    </form>
+</div>
+
+<ul>
+    <li th:each="motoqueiro : ${motoqueiros}">
+        <h2 th:text="${motoqueiro.nomeUser}">Nome do Admin</h2>
+        <p th:text="${motoqueiro.cpfUser}">CPF do Admin</p>
+        <p th:text="${motoqueiro.dataAniversario}">Data de aniversario do Admin</p>
+
+        <form th:action="@{'/motoqueiro/editar/' + ${motoqueiro.cpfUser}}" method="get" style="display:inline;">
+            <button type="submit">Atualizar</button>
+        </form>
+
+        <form th:action="@{'/motoqueiro/' + ${motoqueiro.cpfUser}}" method="post" style="display:inline;">
+            <input type="hidden" name="_method" value="delete" />
+            <button type="submit" onclick="return confirm('Tem certeza que deseja deletar?')">Deletar</button>
+        </form>
+
+    </li>
+</ul>
+</body>
+</html>
