@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Novo Pátio</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+<body>
+<h1>Novo Pátio</h1>
+<form action="#" th:action="@{/secao}" th:object="${secao}" method="post">
+    <div>
+        <label>Identificação da Seção:</label>
+        <input type="text" th:field="*{identificacao}" />
+    </div>
+
+    <label>Selecionar Pátio:</label>
+    <select th:field="*{identificacaoPatio}">
+        <option th:each="patio : ${patios}"
+                th:value="${patio.identificacao}"
+                th:text="${patio.identificacao}">
+        </option>
+    </select>
+
+    <div>
+        <button type="submit">Salvar</button>
+    </div>
+</form>
+</body>
+</html>

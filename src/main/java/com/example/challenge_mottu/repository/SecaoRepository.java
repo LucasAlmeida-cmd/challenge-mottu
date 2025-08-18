@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface SecaoRepository extends JpaRepository<Secao, Long> {
@@ -16,5 +17,7 @@ public interface SecaoRepository extends JpaRepository<Secao, Long> {
     @Query("SELECT s FROM Secao s WHERE s.identificacao = :nomeSecao AND s.patio.identificacao = :nomePatio")
     Optional<Secao> findByNomeAndNomePatio(@Param("nomeSecao") String nomeSecao, @Param("nomePatio") String nomePatio);
 
+    @Query("SELECT s FROM Secao s JOIN FETCH s.patio")
+    List<Secao> findAllWithPatio();
 
 }

@@ -29,9 +29,10 @@ public class SecaoService {
         return secaoRepository.save(savedSecao);
     }
 
-    public List<Secao>listarTodos(){
-        return secaoRepository.findAll();
+    public List<Secao> listarTodos() {
+        return secaoRepository.findAllWithPatio();
     }
+
 
     public Secao atualizar(String ind, Secao secaoObj){
         Secao secao = secaoRepository.findByIdentificacao(ind);
@@ -45,6 +46,13 @@ public class SecaoService {
         if (secao == null) throw new SecaoNotFoundException(ind);
         secaoRepository.delete(secao);
     }
+
+    public Secao buscarSecaoPorNomeEPatio(String nomeSecao, String nomePatio) {
+        Secao secao = secaoRepository.findByNomeAndNomePatio(nomeSecao, nomePatio)
+                .orElseThrow(() -> new SecaoNotFoundException("Seção não encontrada"));
+        return secao;
+    }
+
 
     public void deletarSecaoPorNomeEPatio(String nomeSecao, String nomePatio) {
         Secao secao = secaoRepository.findByNomeAndNomePatio(nomeSecao, nomePatio)

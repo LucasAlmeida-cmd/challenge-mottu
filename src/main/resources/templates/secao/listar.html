@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Seções</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Lista de Seções</h1>
+<div class="container-link">
+    <a href="/secao/novo">Adicionar Nova Seção</a>
+</div>
+
+<div>
+    <h1>Buscar Seção pela identificação e identificação do Pátio:</h1>
+    <form th:object="${secao}" th:action="@{/secao/buscarSecaoPorNomeEPatio}" method="get">
+        <input type="text" name="identificacao" placeholder="Digite a Idenfiticação:"/>
+        <input type="text" name="identificacaoPatio" placeholder="Digite a Idenfiticação do Pátio:"/>
+        <button type="submit">Buscar</button>
+    </form>
+</div>
+
+<ul>
+    <li th:each="secao : ${secoes}">
+        <h2 th:text="${secao.identificacao}">Identificação da Seção:</h2>
+        <p th:text="${secao.patio.identificacao}">Identificação do Pátio</p>
+
+        <form th:action="@{'/secao/' + ${secao.identificacao} + '/' + ${secao.patio.identificacao}}"
+              method="post" style="display:inline;">
+            <input type="hidden" name="_method" value="delete" />
+            <button type="submit" onclick="return confirm('Tem certeza que deseja deletar?')">Deletar</button>
+        </form>
+
+
+    </li>
+</ul>
+</body>
+</html>

@@ -1,30 +1,58 @@
 package com.example.challenge_mottu.controller;
 
+import com.example.challenge_mottu.model.Administrador;
 import com.example.challenge_mottu.model.Secao;
 import com.example.challenge_mottu.records_DTOs.SecaoRecord;
+import com.example.challenge_mottu.service.PatioService;
 import com.example.challenge_mottu.service.SecaoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/secao")
 public class SecaoController {
 
     @Autowired
     SecaoService secaoService;
 
+    @Autowired
+    PatioService patioService;
+
+
+    @GetMapping("/novo")
+    public String novoSecao(Model model){
+        model.addAttribute("secao", new SecaoRecord("", ""));
+        model.addAttribute("patios", patioService.listarTodos());
+        return "secao/formulario-secao";
+    }
+
     @PostMapping
-    public ResponseEntity<Secao>adicionar(@RequestBody @Valid SecaoRecord secao){
-        return ResponseEntity.ok(secaoService.adicionar(secao));
+    public String adicionar(@Valid SecaoRecord secao){
+        secaoService.adicionar(secao);
+        return "redirect:/secao";
     }
 
     @GetMapping
-    public ResponseEntity<List<Secao>>buscarTodos(){
-        return ResponseEntity.ok(secaoService.listarTodos());
+    public String buscarTodos(Model model){
+        model.addAttribute("secoes", secaoService.listarTodos());
+        return "secao/listar";
+    }
+
+    @GetMapping("/buscarSecaoPorNomeEPatio")
+    public String buscarSecaoPorNomeEPatio(
+            @RequestParam("identificacao") String nomeSecao,
+            @RequestParam("identificacaoPatio") String nomePatio,
+            Model model) {
+
+        Secao secao = secaoService.buscarSecaoPorNomeEPatio(nomeSecao, nomePatio);
+        model.addAttribute("secoes", List.of(secao));
+        return "secao/listar";
     }
 
     @PutMapping("/{ind}")
@@ -34,9 +62,9 @@ public class SecaoController {
 
 
     @DeleteMapping("/{nomeSecao}/{nomePatio}")
-    public ResponseEntity<Void> deletarSecaoPorNomeEPatio(@PathVariable String nomeSecao,@PathVariable String nomePatio) {
+    public String deletarSecaoPorNomeEPatioA(@PathVariable String nomeSecao,@PathVariable String nomePatio) {
         secaoService.deletarSecaoPorNomeEPatio(nomeSecao, nomePatio);
-        return ResponseEntity.ok().build();
+        return "redirect:/secao";
     }
 
 
