@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nova Vaga</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+<body>
+<h1>Novo Pátio</h1>
+<form action="#" th:action="@{/vaga/novo}" th:object="${vaga}" method="post">
+    <div>
+        <label>Numero da Vaga</label>
+        <input type="number" th:field="*{numeroVaga}" />
+    </div>
+    <div>
+        <label>Disponibilidade: </label>
+        <input type="checkbox" th:field="*{disponivel}" />
+    </div>
+
+    <label>Selecionar Pátio:</label>
+    <select th:field="*{patioIdentificacao}">
+        <option th:each="patio : ${patios}"
+                th:value="${patio.identificacao}"
+                th:text="${patio.identificacao}">
+        </option>
+    </select>
+
+    <label>Selecionar Seção:</label>
+    <select th:field="*{secaoIdentificacao}">
+        <option th:each="secao : ${secoes}"
+                th:value="${secao.identificacao}"
+                th:text="${secao.identificacao}">
+        </option>
+    </select>
+
+
+    <div>
+        <button type="submit">Salvar</button>
+    </div>
+</form>
+</body>
+</html>

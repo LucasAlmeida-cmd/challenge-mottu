@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Vagas</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Lista de Vagas</h1>
+<div class="container-link">
+    <a href="/vaga/novo">Adicionar Nova Vaga</a>
+</div>
+
+<div>
+    <h1>Buscar Vaga pela identificação:</h1>
+    <form th:action="@{/vaga/buscaPersonalizada}" method="get">
+        <input type="text" name="identVaga" placeholder="Digite a Idenfiticação da Vaga:"/>
+        <input type="text" name="identSecao" placeholder="Digite a Idenfiticação da Seção:"/>
+        <input type="text" name="identPatio" placeholder="Digite a Idenfiticação do Pátio:"/>
+
+        <button type="submit">Buscar</button>
+    </form>
+</div>
+
+<ul>
+    <li th:each="vaga : ${vagas}">
+        <h2 th:text="'Numero da Vaga: ' + ${vaga.numeroVaga}"></h2>
+        <p th:text="'Disponibilidade: '+${vaga.disponivel}"></p>
+        <p th:text="'Pátio: '+${vaga.secao.patio.identificacao}"></p>
+        <p th:text="'Seção: '+${vaga.secao.identificacao}"></p>
+
+        <form th:action="@{'/vaga/editar/' + ${vaga.numeroVaga}+'/'
+                                            +${vaga.secao.identificacao}+'/'
+                                            +${vaga.secao.patio.identificacao}}" method="get" style="display:inline;">
+            <button type="submit">Atualizar</button>
+        </form>
+
+        <form th:action="@{/vaga/{id}(id=${vaga.id})}" method="post" style="display:inline;">
+            <input type="hidden" name="_method" value="delete" />
+            <button type="submit" onclick="return confirm('Tem certeza?')">Deletar</button>
+        </form>
+
+
+
+
+    </li>
+</ul>
+</body>
+</html>

@@ -11,6 +11,7 @@ import com.example.challenge_mottu.repository.SecaoRepository;
 import com.example.challenge_mottu.repository.VagaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -25,10 +26,10 @@ public class VagaService {
     PatioRepository patioRepository;
 
 public Vaga adicionar(VagaRecord vagaObj) {
-    if (vagaObj == null || vagaObj.secaoIdentificacao() == null || vagaObj.padioIdentificacao() == null) {
+    if (vagaObj == null || vagaObj.secaoIdentificacao() == null || vagaObj.patioIdentificacao() == null) {
         throw new IllegalArgumentException("Dados da vaga inválidos");
     }
-    Patio patio = patioRepository.findByIdentificacao(vagaObj.padioIdentificacao());
+    Patio patio = patioRepository.findByIdentificacao(vagaObj.patioIdentificacao());
     Secao secao = secaoRepository.findByIdentificacaoAndPatio(vagaObj.secaoIdentificacao(), patio);
     if (vagaRepository.existsBySecaoAndNumeroVaga(secao, vagaObj.numeroVaga())) {
         throw new VagaException("Já existe uma vaga com número " +
@@ -43,21 +44,13 @@ public Vaga adicionar(VagaRecord vagaObj) {
 }
 
     public List<Vaga> listarTodos(){
-        return vagaRepository.findAll();
+        return vagaRepository.findAllWithSecaoAndPatio();
     }
 
-    public Vaga atualizar(Integer num, Vaga vagaObj){
-        Vaga vaga = vagaRepository.findByNumeroVaga(num);
-        if (vaga == null)throw new VagaNotFoundException("a");
-        vaga.setNumeroVaga(vagaObj.getNumeroVaga());
-        vaga.setSecao(vagaObj.getSecao());
-        return vagaRepository.save(vaga);
-    }
 
-    public void deletar(Integer num){
-        Vaga vaga = vagaRepository.findByNumeroVaga(num);
-        if (vaga == null)throw new VagaNotFoundException("a");
-        vagaRepository.delete(vaga);
+
+    public void deletar(Long id){
+        vagaRepository.deleteById(id);
     }
 
 
@@ -66,5 +59,13 @@ public Vaga adicionar(VagaRecord vagaObj) {
                 .orElseThrow(() -> new VagaNotFoundException("Vaga não encontrada."));
         vaga.setDisponivel(novaVaga.isDisponivel());
         return vagaRepository.save(vaga);
+    }
+
+    public Vaga buscaPersonalizada(String identVaga, String identSecao, String identPatio) {
+        System.out.println(identVaga);
+        System.out.println(identSecao);
+        System.out.println(identPatio);
+        return vagaRepository.findByIdentificadores(identVaga, identSecao, identPatio)
+                .orElseThrow(() -> new VagaNotFoundException("Vaga não encontrada."));
     }
 }

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Atualizar Vaga</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Atualizar Vaga</h1>
+
+<form th:action="@{|/vaga/editar/${vaga.numeroVaga}/${vaga.secao.identificacao}/${vaga.secao.patio.identificacao}|}"
+      th:object="${vaga}"
+      method="post">
+    <input type="hidden" name="_method" value="put" />
+
+    <div>
+        <label>Disponibilidade: </label>
+        <input type="hidden" name="disponivel" value="false"/>
+        <input type="checkbox" th:field="*{disponivel}" value="true"/>
+    </div>
+
+    <button type="submit">Atualizar</button>
+</form>
+
+</body>
+</html>

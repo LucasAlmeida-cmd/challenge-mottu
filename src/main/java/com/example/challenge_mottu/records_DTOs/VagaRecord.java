@@ -9,5 +9,5 @@ public record VagaRecord(@NotNull(message = "Informar o número da vaga.")
                          @NotBlank(message = "Informar o nome da Seção")
                          String secaoIdentificacao,
                          @NotBlank(message = "Informar o nome do Pátio")
-                         String padioIdentificacao) {
+                         String patioIdentificacao) {
 }
