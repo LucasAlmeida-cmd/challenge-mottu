@@ -51,7 +51,7 @@ public class MotoService {
     }
 
     public List<Moto> listarTodas(){
-        return repository.findAll();
+        return repository.findAllWithRelations();
     }
 
     public Moto atualizaPeloChassi(String chassi, Moto moto){

@@ -3,7 +3,6 @@ package com.example.challenge_mottu.controller;
 import com.example.challenge_mottu.model.Administrador;
 import com.example.challenge_mottu.service.AdministradorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

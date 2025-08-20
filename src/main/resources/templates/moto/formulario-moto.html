@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nova Moto</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+<body>
+<h1>Nova Moto</h1>
+<form action="#" th:action="@{/moto}" th:object="${moto}" method="post">
+    <div>
+        <label>Modelo Moto:</label>
+        <input type="text" th:field="*{modeloMoto}" />
+    </div>
+    <div>
+        <label>Ano Moto:</label>
+        <input type="number" th:field="*{anoMoto}" />
+    </div>
+    <div>
+        <label>Chassi:</label>
+        <input type="text" th:field="*{chassi}" />
+    </div>
+
+    <div>
+        <label>Status:</label>
+        <select th:field="*{status}">
+            <option value="">Selecione o status</option>
+            <option value="VERMELHO">VERMELHO</option>
+            <option value="VERDE">VERDE</option>
+            <option value="AMARELO">AMARELO</option>
+            <option value="LARANJA">LARANJA</option>
+        </select>
+        <div class="help-text">Selecione o status atual da moto</div>
+    </div>
+
+
+    <div>
+        <label>CPF do Motoqueiro:</label>
+        <input type="text" th:field="*{motoqueiroCpf}" />
+    </div>
+    <div>
+        <label>Vaga Identificação:</label>
+        <input type="text" th:field="*{vagaIdentificacao}" />
+    </div>
+    <div>
+        <label>Seção Identificação:</label>
+        <input type="text" th:field="*{secaoIdentificacao}" />
+    </div>
+    <div>
+        <label>Pátio Identificação:</label>
+        <input type="text" th:field="*{patioIdentificacao}" />
+    </div>
+
+    <div>
+        <button type="submit">Salvar</button>
+    </div>
+</form>
+</body>
+</html>

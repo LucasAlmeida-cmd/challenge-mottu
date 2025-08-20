@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Motos</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Lista de Motos</h1>
+<div class="container-link">
+    <a href="/moto/novo">Adicionar Nova Moto</a>
+</div>
+
+<div>
+    <h1>Buscar Moto: </h1>
+    <form th:action="@{/moto/buscarPorCpf}" method="get">
+        <input type="text" name="cpf" placeholder="Digite o CPF"/>
+        <button type="submit">Buscar</button>
+    </form>
+</div>
+
+<ul>
+    <li th:each="moto : ${motos}">
+        <h2 th:text="'Modelo: ' + ${moto.modeloMoto}"></h2>
+        <p th:text="'Ano: '+${moto.anoMoto}"></p>
+        <p th:text="'Chassi: '+${moto.chassi}"></p>
+        <p th:text="'Motoqueiro Vinculado: '+${moto.motoqueiro.nomeUser}"></p>
+        <p th:text="'CNH Motoqueiro : '+${moto.motoqueiro.cnh}"></p>
+        <p th:text="'Vaga : '+${moto.vaga.numeroVaga}"></p>
+        <p th:text="'Seção : '+${moto.vaga.secao.identificacao}"></p>
+        <p th:text="'Pátio : '+${moto.vaga.secao.patio.identificacao}"></p>
+
+
+
+        <form th:action="@{'/moto/editar/' + ${moto}}" method="get" style="display:inline;">
+            <button type="submit">Atualizar</button>
+        </form>
+
+        <form th:action="@{'/moto/' + ${moto}}" method="post" style="display:inline;">
+            <input type="hidden" name="_method" value="delete" />
+            <button type="submit" onclick="return confirm('Tem certeza que deseja deletar?')">Deletar</button>
+        </form>
+    </li>
+</ul>
+</body>
+</html>
