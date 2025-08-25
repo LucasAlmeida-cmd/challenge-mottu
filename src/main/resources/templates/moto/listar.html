@@ -13,8 +13,8 @@
 
 <div>
     <h1>Buscar Moto: </h1>
-    <form th:action="@{/moto/buscarPorCpf}" method="get">
-        <input type="text" name="cpf" placeholder="Digite o CPF"/>
+    <form th:action="@{/moto/buscarPorChassi}" method="get">
+        <input type="text" name="chassi" placeholder="Digite o Chassi"/>
         <button type="submit">Buscar</button>
     </form>
 </div>
@@ -32,7 +32,7 @@
 
 
 
-        <form th:action="@{'/moto/editar/' + ${moto}}" method="get" style="display:inline;">
+        <form th:action="@{'/moto/editar/' + ${moto.getChassi}}" method="get" style="display:inline;">
             <button type="submit">Atualizar</button>
         </form>
 

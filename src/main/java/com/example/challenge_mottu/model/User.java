@@ -7,7 +7,6 @@ import jakarta.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
-import java.util.Calendar;
 
 @MappedSuperclass
 public abstract class User {

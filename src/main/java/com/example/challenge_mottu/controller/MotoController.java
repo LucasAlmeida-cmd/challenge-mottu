@@ -1,6 +1,7 @@
 package com.example.challenge_mottu.controller;
 
 import com.example.challenge_mottu.model.Moto;
+import com.example.challenge_mottu.model.Motoqueiro;
 import com.example.challenge_mottu.model.StatusMoto;
 import com.example.challenge_mottu.records_DTOs.MotoRecord;
 import com.example.challenge_mottu.service.MotoService;
@@ -39,10 +40,31 @@ public class MotoController {
         return "moto/listar";
     }
 
-    @PutMapping
-    @RequestMapping("/{chassi}")
-    public ResponseEntity<Moto> atualizar(@PathVariable String chassi, @RequestBody Moto moto){
-        return ResponseEntity.ok(motoService.atualizaPeloChassi(chassi,moto));
+    @GetMapping
+    @RequestMapping("/buscarPorChassi")
+    public String buscarPorChassi(@RequestParam String chassi, Model model){
+        Moto moto = motoService.buscarPorChassi(chassi);
+        if (moto != null) {
+            model.addAttribute("motos", List.of(moto));
+        } else {
+            model.addAttribute("motos", List.of());
+            model.addAttribute("mensagem", "motoqueiros não encontrado");
+        }
+        return "moto/listar";
+    }
+
+    @GetMapping("/editar/{chassi}")
+    public String carregarFormularioEdicao(@PathVariable String chassi, Model model) {
+        System.out.println(chassi);
+        Moto moto = motoService.buscarPorChassi(chassi);
+        model.addAttribute("moto", moto);
+        return "moto/formulario-atualizar-moto";
+    }
+
+    @PutMapping("/editar/{chassi}")
+    public String atualizar(@PathVariable String chassi, @ModelAttribute Moto moto){
+        motoService.atualizaPeloChassi(chassi, moto);
+        return "redirect:/moto";
     }
 
     @DeleteMapping("/{chassi}")

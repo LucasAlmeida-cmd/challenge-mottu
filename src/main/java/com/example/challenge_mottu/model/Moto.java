@@ -19,7 +19,7 @@ public class Moto {
     @Column(name = "ano_moto", nullable = false)
     private int anoMoto;
 
-    @Column(name = "chassi_moto", nullable = false)
+    @Column(name = "chassi_moto", nullable = false, unique = true)
     private String chassi ;
 
     @Enumerated(EnumType.STRING)

@@ -55,6 +55,7 @@ public class MotoService {
     }
 
     public Moto atualizaPeloChassi(String chassi, Moto moto){
+        Motoqueiro motoqueiro = motoqueiroRepository.findMotoqueiroByCnh(moto.getMotoqueiro().getCnh());
         Moto moto1 = repository.findByChassi(chassi);
         if (moto1 == null)throw new MotoNotFoundException(chassi);
         moto1.setAnoMoto(moto.getAnoMoto());
@@ -62,6 +63,7 @@ public class MotoService {
         moto1.setMotoqueiro(moto.getMotoqueiro());
         moto1.setStatus(moto.getStatus());
         moto1.setChassi(moto.getChassi());
+        moto1.setMotoqueiro(motoqueiro);
         return repository.save(moto1);
     }
 
@@ -74,5 +76,14 @@ public class MotoService {
             motoqueiroRepository.save(motoqueiro);
         }
         repository.delete(moto);
+    }
+
+    public Moto buscarPorChassi(String chassi){
+        Moto moto = repository.findByChassi(chassi);
+        if (moto != null){
+            return moto;
+        }else {
+            throw new MotoNotFoundException("Moto com chassi "+ chassi+ ", não encontada.");
+        }
     }
 }

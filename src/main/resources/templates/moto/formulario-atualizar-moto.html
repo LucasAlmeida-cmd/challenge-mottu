@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Atualizar Moto</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+<body>
+<h1>Atualizar Moto</h1>
+
+
+<form th:action="@{/moto/editar/{chassi}(chassi=${moto.getChassi})}"
+      th:object="${moto}"
+      method="post">
+    <input type="hidden" name="_method" value="put" />
+
+    <div>
+        <label>Modelo Moto:</label>
+        <input type="text" th:field="*{modeloMoto}" />
+    </div>
+    <div>
+        <label>Ano Moto:</label>
+        <input type="number" th:field="*{anoMoto}" />
+    </div>
+    <div>
+        <label>Chassi:</label>
+        <input type="text" th:field="*{chassi}" />
+    </div>
+
+    <div>
+        <label>Status:</label>
+        <select th:field="*{status}">
+            <option value="">Selecione o status</option>
+            <option value="VERMELHO">VERMELHO</option>
+            <option value="VERDE">VERDE</option>
+            <option value="AMARELO">AMARELO</option>
+            <option value="LARANJA">LARANJA</option>
+        </select>
+        <div class="help-text">Selecione o status atual da moto</div>
+    </div>
+
+
+    <div>
+        <label>CPF do Motoqueiro:</label>
+        <input type="text" th:field="*{motoqueiro.cnh}" />
+    </div>
+    <div>
+        <label>Vaga Identificação:</label>
+        <input type="text" th:field="*{vaga.numeroVaga}" />
+    </div>
+    <div>
+        <label>Seção Identificação:</label>
+        <input type="text" th:field="*{vaga.secao.identificacao}" />
+    </div>
+    <div>
+        <label>Pátio Identificação:</label>
+        <input type="text" th:field="*{vaga.secao.patio.identificacao}" />
+    </div>
+
+    <button type="submit">Atualizar</button>
+</form>
+
+</body>
+</html>
