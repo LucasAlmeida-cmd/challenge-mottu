@@ -1,7 +1,6 @@
 package com.example.challenge_mottu.service;
 
 import com.example.challenge_mottu.exceptions.UsuarioNotFoundException;
-import com.example.challenge_mottu.model.Administrador;
 import com.example.challenge_mottu.model.Moto;
 import com.example.challenge_mottu.model.Motoqueiro;
 import com.example.challenge_mottu.repository.MotoRepository;

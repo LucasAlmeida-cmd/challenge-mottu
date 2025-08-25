@@ -1,7 +1,6 @@
 package com.example.challenge_mottu.controller;
 
 import com.example.challenge_mottu.model.Moto;
-import com.example.challenge_mottu.model.Motoqueiro;
 import com.example.challenge_mottu.model.StatusMoto;
 import com.example.challenge_mottu.records_DTOs.MotoRecord;
 import com.example.challenge_mottu.service.MotoService;

@@ -11,7 +11,6 @@ import com.example.challenge_mottu.repository.SecaoRepository;
 import com.example.challenge_mottu.repository.VagaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 

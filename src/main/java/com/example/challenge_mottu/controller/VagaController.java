@@ -1,16 +1,13 @@
 package com.example.challenge_mottu.controller;
 
 
-import com.example.challenge_mottu.model.Patio;
 import com.example.challenge_mottu.model.Vaga;
-import com.example.challenge_mottu.records_DTOs.SecaoRecord;
 import com.example.challenge_mottu.records_DTOs.VagaRecord;
 import com.example.challenge_mottu.service.PatioService;
 import com.example.challenge_mottu.service.SecaoService;
 import com.example.challenge_mottu.service.VagaService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
