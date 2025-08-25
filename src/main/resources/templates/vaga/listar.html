@@ -6,7 +6,7 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<h1>Lista de Vagas</h1>
+<h1 th:replace="~{fragments/h1-lista :: lista(nome='de Vagas')}" > </h1>
 <div class="container-link">
     <a href="/vaga/novo">Adicionar Nova Vaga</a>
 </div>

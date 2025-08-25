@@ -6,7 +6,7 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<h1>Lista de Administradores</h1>
+<h1 th:replace="~{fragments/h1-lista :: lista(nome='de Administradores')}" > </h1>
 <div class="container-link">
     <a href="/admin/novo">Adicionar Novo Administrador</a>
 </div>

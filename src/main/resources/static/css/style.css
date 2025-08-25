@@ -38,7 +38,15 @@ li:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
-
+.header-fragment{
+    font-family: 'Arial', sans-serif;
+    color: #444;
+    justify-content: center;
+    font-size: 35px;
+    font-style: inherit;
+    text-align: center;
+    padding: 25px;
+}
 .container-link {
     display: flex;
     justify-content: center;
