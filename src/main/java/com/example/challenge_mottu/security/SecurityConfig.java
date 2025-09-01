@@ -51,16 +51,21 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                             //end-points
                                 .requestMatchers("/moto/**", "/vaga/**","/patio/**",
-                                        "/motoqueiro/**", "/secao/**", "/css/**", "/logout","/signup").permitAll()
+                                        "/motoqueiro/**", "/secao/**", "/css/**", "/logout","/signup", "/index").permitAll()
 
                                 .requestMatchers("/admin/**").hasRole("ADMIN")
 
                                 .anyRequest().authenticated()
                         )
-                .formLogin(httpForm ->{
-                    httpForm.loginPage("/login").permitAll();
-                    httpForm.failureUrl("/login?error");
+                .formLogin(httpForm -> {
+                    httpForm.loginPage("/login")
+                            .usernameParameter("email")
+                            .passwordParameter("password")
+                            .permitAll()
+                            .defaultSuccessUrl("/index")
+                            .failureUrl("/login?error");
                 })
+
                 .build();
     }
 

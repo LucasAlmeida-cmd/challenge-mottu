@@ -17,23 +17,19 @@ import java.util.List;
 public class DataInitializer {
 
     @Bean
-    CommandLineRunner initAdmin(AdministradorRepository userRepository, PasswordEncoder passwordEncoder) {
+    public CommandLineRunner loadData(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         return args -> {
-            List<Administrador> admins = userRepository.findByRole(Role.ADMIN);
-
-            if (admins == null || admins.isEmpty()) {
+            if (userRepository.findByEmail("adminteste").isEmpty()) {
                 Administrador admin = new Administrador();
                 admin.setNomeUser("admin");
                 admin.setDataAniversario(LocalDate.of(2000, 1, 1));
                 admin.setPassword(passwordEncoder.encode("admin"));
-                admin.setEmail("admin");
-
+                admin.setEmail("adminteste");
+                admin.setRole(Role.ADMIN);
                 userRepository.save(admin);
-                System.out.println("✅ Admin criado: login=admin, senha=admin");
-            } else {
-                System.out.println("ℹ️ Admin já existe no sistema");
-                System.out.println("✅ Admin criado: login=admin, senha=admin");
+                System.out.println("✅ Admin salvo: " + admin.getEmail() + " / " + admin.getPassword());
             }
         };
     }
+
 }

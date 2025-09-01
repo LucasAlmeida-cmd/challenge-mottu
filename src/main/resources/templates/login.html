@@ -11,24 +11,20 @@
 <body>
 <body>
     <section>
-        
-        <form action="/login" method="post">
+        <form th:action="@{/login}" method="post">
             <h1>Login</h1>
-            <div class="dialog-row">
-                <label th:if="${param.error}" th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}" class="text-center redText"></label>                   
-            </div>
-            <div class="inputbox">
-                <ion-icon name="email-outline"></ion-icon>
-                <input name="email" id="email" type="text" required>
-                <label for="">Email Usuario:</label>
-            </div>
-            <div class="inputbox">
-                <ion-icon name="lock-closed-outline"></ion-icon>
-                <input name="password" type="password" id="password" required>
-                <label for="">Senha</label>
-            </div>
-            <button>Log in</button>
+
+
+
+            <label for="email">Email Usuário:</label>
+            <input name="email" id="email" type="text" required>
+            <br>
+            <label for="password">Senha:</label>
+            <input name="password" type="password" id="password" required>
+            <br>
+            <button type="submit">Login</button>
         </form>
+
     </section>
 </body>
   

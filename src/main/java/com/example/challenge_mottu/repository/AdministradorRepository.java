@@ -12,8 +12,5 @@ import java.util.List;
 @Repository
 public interface AdministradorRepository extends JpaRepository<Administrador, Long> {
 
-
-    List<Administrador> findByRole(Role role);
-
     Administrador findByCodigo(String codigo);
 }

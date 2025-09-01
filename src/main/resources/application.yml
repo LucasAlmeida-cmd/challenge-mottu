@@ -1,3 +1,4 @@
+---
 server:
   error:
     include-message: always
@@ -14,8 +15,8 @@ server:
 
 spring:
   datasource:
+    url: jdbc:postgresql://localhost:5432/challenge_mottu
     password: admin
-    url: jdbc:postgresql://localhost:5432/challenge_mottu #ajuste para a sua Database do seu BD
     username: postgres
 
   jpa:
@@ -26,3 +27,4 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
     show-sql: true
+...
