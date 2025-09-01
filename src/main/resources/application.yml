@@ -1,0 +1,28 @@
+server:
+  error:
+    include-message: always
+    include-binding-errors: always
+
+#spring:
+#  datasource:
+#    password: #Coloque_seu_password_aqui
+#    url: jdbc:postgresql://USER:PASSWORD@INTERNAL_HOST:PORT/SUA_DATABASE #atualize aqui com seus dados
+#    username: #Coloque_seu_username_aqui
+#    driver-class-name: org.postgresql.Driver
+#    hikari:
+#      auto-commit: false
+
+spring:
+  datasource:
+    password: admin
+    url: jdbc:postgresql://localhost:5432/challenge_mottu #ajuste para a sua Database do seu BD
+    username: postgres
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true

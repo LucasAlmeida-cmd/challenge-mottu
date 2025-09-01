@@ -3,9 +3,11 @@ package com.example.challenge_mottu.service;
 import com.example.challenge_mottu.exceptions.UsuarioNotFoundException;
 import com.example.challenge_mottu.model.Moto;
 import com.example.challenge_mottu.model.Motoqueiro;
+import com.example.challenge_mottu.model.Role;
 import com.example.challenge_mottu.repository.MotoRepository;
 import com.example.challenge_mottu.repository.MotoqueiroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,18 +22,23 @@ public class MotoqueiroService {
     ViaCepService viaCepService;
     @Autowired
     MotoRepository motoRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
 
-    public Motoqueiro cadastrar(Motoqueiro motoqueiro){
+
+    public void cadastrar(Motoqueiro motoqueiro){
         motoqueiro.setEndereco(viaCepService.buscarEnderecoPorCEP(motoqueiro.getEndereco().getCep()));
-        return repository.save(motoqueiro);
+        motoqueiro.setPassword(passwordEncoder.encode(motoqueiro.getPassword()));
+        motoqueiro.setRole(Role.MOTOQUEIRO);
+        repository.save(motoqueiro);
     }
 
     public List<Motoqueiro> listarTodos(){
         return repository.findAll();
     }
 
-    public Motoqueiro atualiza (String cpf, Motoqueiro motoqueiro){
+    public void atualiza (String cpf, Motoqueiro motoqueiro){
         String cpfLimpo = cpf.replaceAll("[^0-9]", "");
         Motoqueiro motoqueiro1 = repository.findByCpfUser(cpfLimpo);
         if (motoqueiro1 == null){
@@ -40,7 +47,7 @@ public class MotoqueiroService {
         motoqueiro1.setDataAniversario(motoqueiro.getDataAniversario());
         motoqueiro1.setNomeUser(motoqueiro.getNomeUser());
         motoqueiro1.setEndereco(viaCepService.buscarEnderecoPorCEP(motoqueiro.getEndereco().getCep()));
-        return repository.save(motoqueiro1);
+        repository.save(motoqueiro1);
     }
 
     public void remover(String cpf){
@@ -54,7 +61,7 @@ public class MotoqueiroService {
         if (motoqueiro == null){
             throw new UsuarioNotFoundException(cpf);
         }
-        repository.deleteById(motoqueiro.getId());
+        repository.deleteByCpfUser(motoqueiro.getCpfUser());
     }
     public Motoqueiro buscarPorCpf(String cpf) {
         return repository.findByCpfUser(cpf);

@@ -6,4 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface MotoqueiroRepository extends JpaRepository<Motoqueiro, Long> {
     Motoqueiro findByCpfUser(String cpf);
     Motoqueiro findMotoqueiroByCnh(String cnh);
+    void deleteByCpfUser(String cpfUser);
 }

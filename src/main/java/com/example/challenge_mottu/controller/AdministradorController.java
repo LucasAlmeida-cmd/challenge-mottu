@@ -38,7 +38,7 @@ public class AdministradorController {
     @RequestMapping("/buscarPorCpf")
     public String atualizaPeloCpf(@RequestParam String cpf, Model model){
         String cpfNumerico = cpf.replaceAll("[^0-9]", "");
-        Administrador admin = service.buscarPorCpf(cpfNumerico);
+        Administrador admin = service.buscarPorCodigo(cpfNumerico);
         if (admin != null) {
             model.addAttribute("administradores", List.of(admin));
         } else {
@@ -50,7 +50,7 @@ public class AdministradorController {
 
     @GetMapping("/editar/{cpf}")
     public String carregarFormularioEdicao(@PathVariable String cpf, Model model) {
-        Administrador administrador = service.buscarPorCpf(cpf);
+        Administrador administrador = service.buscarPorCodigo(cpf);
         model.addAttribute("administrador", administrador);
         return "admin/formulario-atualizar-admin";
     }
