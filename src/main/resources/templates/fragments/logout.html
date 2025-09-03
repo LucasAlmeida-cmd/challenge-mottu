@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Fragments</title>
+</head>
+<body>
+<div  class="logoutButtonDiv" th:fragment="logoutButton">
+    <form  class="logoutButtonFrom" th:action="@{/logout}" method="post">
+        <button class="logoutButton" type="submit">Logout</button>
+    </form>
+</div>
+</body>
+</html>
