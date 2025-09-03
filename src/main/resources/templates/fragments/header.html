@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+
+<header th:fragment="adminHeader(nome)">
+    <h1 th:replace="~{fragments/h1-lista :: lista(nome=${nome})}"></h1>
+    <div th:replace="~{fragments/logout :: logoutButton}"></div>
+</header>
+
+</body>
+</html>

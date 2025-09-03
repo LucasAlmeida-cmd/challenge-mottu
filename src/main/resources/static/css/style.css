@@ -60,12 +60,22 @@ li:hover {
     padding: 10px 20px;
     border-radius: 4px;
     cursor: pointer;
+    font-family: 'Arial', sans-serif;
 }
 .logoutButtonDiv {
     position: absolute;
     top: 20px;
     right: 20px;
     z-index: 1000;
+}
+.homeButtom{
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Arial', sans-serif;
 }
 a {
     color: #3498db;

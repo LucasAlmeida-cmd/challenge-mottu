@@ -5,9 +5,8 @@
     <title>Lista de Motoqueiros</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
+<div th:replace="~{fragments/header :: adminHeader('de Motoqueiros')}"></div>
 <body>
-<h1 th:replace="~{fragments/h1-lista :: lista(nome='de Motoqueiros')}" > </h1>
-<div th:replace="~{fragments/logout :: logoutButton}"></div>
 <div class="container-link">
     <a href="/motoqueiro/novo">Adicionar Novo Motoqueiro</a>
 </div>

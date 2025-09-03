@@ -5,9 +5,8 @@
     <title>Lista de Pátios</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
+<div th:replace="~{fragments/header :: adminHeader('de Pátios')}"></div>
 <body>
-<h1 th:replace="~{fragments/h1-lista :: lista(nome='de Pátios')}" > </h1>
-<div th:replace="~{fragments/logout :: logoutButton}"></div>
 <div class="container-link">
     <a href="/patio/novo">Adicionar Novo Pátio</a>
 </div>

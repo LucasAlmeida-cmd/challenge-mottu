@@ -4,10 +4,9 @@
     <title>Fragments</title>
 </head>
 <body>
-<div  class="logoutButtonDiv" th:fragment="logoutButton">
+<div  class="logoutButtonDiv" th:fragment="logoutButtonAdmin">
     <form  class="logoutButtonFrom" th:action="@{/logout}" method="post">
         <button class="logoutButton" type="submit">Logout</button>
-        <a class="homeButtom" href="admin/dashboard">Home</a>
     </form>
 </div>
 </body>

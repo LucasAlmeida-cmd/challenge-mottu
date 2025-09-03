@@ -5,9 +5,8 @@
     <title>Lista de Vagas</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
+<div th:replace="~{fragments/header :: adminHeader('de Vagas')}"></div>
 <body>
-<h1 th:replace="~{fragments/h1-lista :: lista(nome='de Vagas')}" > </h1>
-<div th:replace="~{fragments/logout :: logoutButton}"></div>
 <div class="container-link">
     <a href="/vaga/novo">Adicionar Nova Vaga</a>
 </div>

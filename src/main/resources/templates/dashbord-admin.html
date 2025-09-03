@@ -63,12 +63,21 @@
             right: 20px;
             z-index: 1000;
         }
+        .homeButtom{
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Arial', sans-serif;
+        }
     </style>
 </head>
 <body>
     <header>
         <h1>Página ADMIN</h1>
-        <div th:replace="~{fragments/logout :: logoutButton}"></div>
+        <div th:replace="~{fragments/logout-admin :: logoutButtonAdmin}"></div>
     </header>
     <nav>
         <a href="/admin">Administradores</a>
