@@ -10,6 +10,7 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,6 +24,8 @@ public class SecurityConfig {
 
     @Autowired
     private final CustomUserDetailsService customUserDetailsService;
+    @Autowired
+    private CustomLoginSuccessHandler loginSuccessHandler;
 
     @Bean
     public UserDetailsService userDetailsService(){
@@ -48,24 +51,22 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .authorizeHttpRequests(auth -> auth
-                            //end-points
-                                .requestMatchers("/moto/**", "/vaga/**","/patio/**",
-                                        "/motoqueiro/**", "/secao/**", "/css/**", "/logout","/signup", "/index").permitAll()
-
-                                .requestMatchers("/admin/**").hasRole("ADMIN")
-
-                                .anyRequest().authenticated()
-                        )
+                .csrf(AbstractHttpConfigurer::disable)
                 .formLogin(httpForm -> {
                     httpForm.loginPage("/login")
                             .usernameParameter("email")
                             .passwordParameter("password")
-                            .permitAll()
-                            .defaultSuccessUrl("/index")
-                            .failureUrl("/login?error");
+                            .successHandler(loginSuccessHandler)
+                            .failureUrl("/login?error")
+                            .permitAll();
                 })
-
+                .authorizeHttpRequests(registry -> {
+                    registry.requestMatchers("/moto/**", "/vaga/**", "/patio/**",
+                            "/motoqueiro/**", "/secao/**", "/index").hasAnyRole("MOTOQUEIRO", "ADMIN");
+                    registry.requestMatchers("/admin/**").hasRole("ADMIN");
+                    registry.requestMatchers("/css/**", "/login").permitAll();
+                    registry.anyRequest().authenticated();
+                })
                 .build();
     }
 

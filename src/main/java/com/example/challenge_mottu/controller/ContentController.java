@@ -12,9 +12,14 @@ public class ContentController {
         return "login";
     }
 
-    @GetMapping("/index")
-    public String home(){
-        return "index";
+    @GetMapping("/admin/dashboard")
+    public String adminDashboard() {
+        return "dashbord-admin";
+    }
+
+    @GetMapping("/motoqueiro/dashboard")
+    public String motoqueiroDashboard() {
+        return "dashbord-motoqueiro";
     }
 
 

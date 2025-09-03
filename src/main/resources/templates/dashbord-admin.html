@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Home Page</title>
+    <title>Dashbord Admin</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -49,24 +49,36 @@
             bottom: 0;
             width: 100%;
         }
+        .logoutButton{
+            background-color: #FF0000;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .logoutButtonDiv {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
     </style>
 </head>
 <body>
     <header>
-        <h1>Welcome to My Home Page</h1>
+        <h1>Página ADMIN</h1>
+        <div th:replace="~{fragments/logout :: logoutButton}"></div>
     </header>
     <nav>
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
+        <a href="/admin">Administradores</a>
+        <a href="/motoqueiro">Motoqueiros</a>
+        <a href="/patio">Pátios</a>
+        <a href="/secao">Seções</a>
+        <a href="/vaga">Vagas</a>
+        <a href="/moto">Motos</a>
     </nav>
-    <main>
-        <h2>About Me</h2>
-        <p>This is a paragraph about me. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque nisl ut sapien interdum, nec ullamcorper velit dapibus. Sed ac vestibulum libero, nec tempor felis.</p>
-        <h2>Services</h2>
-        <p>These are the services I offer. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque nisl ut sapien interdum, nec ullamcorper velit dapibus. Sed ac vestibulum libero, nec tempor felis.</p>
-    </main>
+
     <footer>
         <p>Footer Content &copy; 2024</p>
     </footer>
