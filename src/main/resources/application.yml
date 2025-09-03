@@ -18,6 +18,10 @@ spring:
     url: jdbc:postgresql://localhost:5432/challenge_mottu
     password: admin
     username: postgres
+  mvc:
+    hidden method:
+      filter:
+        enabled: true
 
   jpa:
     hibernate:

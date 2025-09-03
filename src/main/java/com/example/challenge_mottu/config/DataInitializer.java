@@ -21,6 +21,7 @@ public class DataInitializer {
                 admin.setNomeUser("admin");
                 admin.setDataAniversario(LocalDate.of(2000, 1, 1));
                 admin.setPassword(passwordEncoder.encode("admin"));
+                admin.setCodigo("123141511");
                 admin.setEmail("admin");
                 admin.setRole(Role.ADMIN);
                 userRepository.save(admin);

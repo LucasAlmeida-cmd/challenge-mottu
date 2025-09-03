@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AdministradorService {
@@ -36,15 +37,14 @@ public class AdministradorService {
         }
         administrador.setNomeUser(administradorAtualizado.getNomeUser());
         administrador.setDataAniversario(administradorAtualizado.getDataAniversario());
+        administrador.setEmail(administradorAtualizado.getEmail());
+        administrador.setPassword(passwordEncoder.encode(administradorAtualizado.getPassword()));
         repository.save(administrador);
     }
 
-    public void removerAdmin(String codigo) {
-        Administrador administrador = repository.findByCodigo(codigo);
-        if (administrador == null){
-            throw new UsuarioNotFoundException(codigo);
-        }
-        repository.deleteById(administrador.getId());
+    public void removerAdmin(Long id) {
+        Optional<Administrador> administrador = repository.findById(id);
+        repository.deleteById(id);
     }
 
     public Administrador buscarPorCodigo(String codigo) {

@@ -10,7 +10,7 @@
 <h1>Atualizar Administrador</h1>
 
 
-<form th:action="@{/admin/editar/{cpf}(cpf=${administrador.cpfUser})}"
+<form th:action="@{/admin/editar/{codigo}(codigo=${administrador.codigo})}"
       th:object="${administrador}"
       method="post">
     <input type="hidden" name="_method" value="put" />
@@ -20,6 +20,12 @@
 
     <label>Data de aniversário:</label>
     <input type="date" th:field="*{dataAniversario}" required />
+
+    <label>Data de Email:</label>
+    <input type="text" th:field="*{email}" required />
+
+    <label>Data de Senha:</label>
+    <input type="text" th:field="*{password}" required />
 
     <button type="submit">Atualizar</button>
 </form>

@@ -35,10 +35,9 @@ public class AdministradorController {
     }
 
     @GetMapping
-    @RequestMapping("/buscarPorCpf")
-    public String atualizaPeloCpf(@RequestParam String cpf, Model model){
-        String cpfNumerico = cpf.replaceAll("[^0-9]", "");
-        Administrador admin = service.buscarPorCodigo(cpfNumerico);
+    @RequestMapping("/buscarPorCodigo")
+    public String atualizaPeloCpf(@RequestParam String codigo, Model model){
+        Administrador admin = service.buscarPorCodigo(codigo);
         if (admin != null) {
             model.addAttribute("administradores", List.of(admin));
         } else {
@@ -48,22 +47,22 @@ public class AdministradorController {
         return "admin/listar";
     }
 
-    @GetMapping("/editar/{cpf}")
-    public String carregarFormularioEdicao(@PathVariable String cpf, Model model) {
-        Administrador administrador = service.buscarPorCodigo(cpf);
+    @GetMapping("/editar/{codigo}")
+    public String carregarFormularioEdicao(@PathVariable String codigo, Model model) {
+        Administrador administrador = service.buscarPorCodigo(codigo);
         model.addAttribute("administrador", administrador);
         return "admin/formulario-atualizar-admin";
     }
 
-    @PutMapping("/editar/{cpf}")
-    public String atualizar(@PathVariable String cpf, @ModelAttribute Administrador administrador) {
-        service.atualizarAdminPorCpf(cpf, administrador);
+    @PutMapping("/editar/{codigo}")
+    public String atualizar(@PathVariable String codigo, @ModelAttribute Administrador administrador) {
+        service.atualizarAdminPorCpf(codigo, administrador);
         return "redirect:/admin";
     }
 
-    @DeleteMapping("/{cpf}")
-    public String deletarPorCpf(@PathVariable String cpf) {
-        service.removerAdmin(cpf.replaceAll("[^0-9]", ""));
+    @DeleteMapping("/{id}")
+    public String deletarPorCpf(@PathVariable Long id) {
+        service.removerAdmin(id);
         return "redirect:/admin";
     }
 
