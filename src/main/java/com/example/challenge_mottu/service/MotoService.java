@@ -9,6 +9,7 @@ import com.example.challenge_mottu.records_DTOs.MotoRecord;
 import com.example.challenge_mottu.repository.MotoRepository;
 import com.example.challenge_mottu.repository.MotoqueiroRepository;
 import com.example.challenge_mottu.repository.VagaRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -67,16 +68,23 @@ public class MotoService {
         return repository.save(moto1);
     }
 
-    public void remover(String chassi){
+    public void remover(String chassi) {
+        System.out.println("Removendo moto com chassi: " + chassi);
         Moto moto = repository.findByChassi(chassi);
         if (moto == null) throw new MotoNotFoundException(chassi);
+
         if (moto.getMotoqueiro() != null) {
-            Motoqueiro motoqueiro = moto.getMotoqueiro();
-            motoqueiro.setMoto(null);
-            motoqueiroRepository.save(motoqueiro);
+            moto.setMotoqueiro(null);
         }
-        repository.delete(moto);
+        if (moto.getVaga() != null) {
+            moto.setVaga(null);
+        }
+
+        repository.deleteByChassi(chassi);
     }
+
+
+
 
     public Moto buscarPorChassi(String chassi){
         Moto moto = repository.findByChassi(chassi);

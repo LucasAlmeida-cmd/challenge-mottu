@@ -2,7 +2,9 @@ package com.example.challenge_mottu.repository;
 
 import com.example.challenge_mottu.model.Moto;
 import com.example.challenge_mottu.model.Motoqueiro;
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
@@ -17,4 +19,9 @@ public interface MotoRepository extends JpaRepository<Moto, Long> {
             "LEFT JOIN FETCH v.secao s " +
             "LEFT JOIN FETCH s.patio")
     List<Moto> findAllWithRelations();
+
+    @Modifying
+    @Transactional
+    @Query("DELETE FROM Moto m WHERE m.chassi = :chassi")
+    void deleteByChassi(String chassi);
 }

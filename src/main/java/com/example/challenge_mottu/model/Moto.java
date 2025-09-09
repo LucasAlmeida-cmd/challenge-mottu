@@ -27,7 +27,7 @@ public class Moto {
     private StatusMoto status;
 
     @OneToOne
-    @JoinColumn(name = "idMotoqueiro")
+    @JoinColumn(name = "id_motoqueiro")
     private Motoqueiro motoqueiro;
 
 

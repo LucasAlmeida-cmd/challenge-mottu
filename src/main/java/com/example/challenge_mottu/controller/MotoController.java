@@ -67,9 +67,10 @@ public class MotoController {
     }
 
     @DeleteMapping("/{chassi}")
-    public ResponseEntity<Moto> deletarPorChassi(@PathVariable String chassi){
+    public String deletarPorChassi(@PathVariable String chassi){
+        System.out.println(chassi);
         motoService.remover(chassi);
-        return ResponseEntity.noContent().build();
+        return "redirect:/moto";
     }
 
 

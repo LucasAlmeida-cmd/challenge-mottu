@@ -24,11 +24,11 @@
         <h2 th:text="'Modelo: ' + ${moto.modeloMoto}"></h2>
         <p th:text="'Ano: '+${moto.anoMoto}"></p>
         <p th:text="'Chassi: '+${moto.chassi}"></p>
-        <p th:text="'Motoqueiro Vinculado: '+${moto.motoqueiro.nomeUser}"></p>
-        <p th:text="'CNH Motoqueiro : '+${moto.motoqueiro.cnh}"></p>
-        <p th:text="'Vaga : '+${moto.vaga.numeroVaga}"></p>
-        <p th:text="'Seção : '+${moto.vaga.secao.identificacao}"></p>
-        <p th:text="'Pátio : '+${moto.vaga.secao.patio.identificacao}"></p>
+        <p th:text="'Motoqueiro Vinculado: '+${moto.motoqueiro?.nomeUser}"></p>
+        <p th:text="'CNH Motoqueiro: '+${moto.motoqueiro?.cnh}"></p>
+        <p th:text="'Vaga: '+${moto.vaga?.numeroVaga}"></p>
+        <p th:text="'Seção: '+${moto.vaga?.secao?.identificacao}"></p>
+        <p th:text="'Pátio: '+${moto.vaga?.secao?.patio?.identificacao}"></p>
 
 
 
@@ -36,7 +36,7 @@
             <button type="submit">Atualizar</button>
         </form>
 
-        <form th:action="@{'/moto/' + ${moto}}" method="post" style="display:inline;">
+        <form th:action="@{/moto/{chassi}(chassi=${moto.chassi})}" method="post" style="display:inline;">
             <input type="hidden" name="_method" value="delete" />
             <button type="submit" onclick="return confirm('Tem certeza que deseja deletar?')">Deletar</button>
         </form>
