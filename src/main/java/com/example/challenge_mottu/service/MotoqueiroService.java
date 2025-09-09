@@ -6,6 +6,7 @@ import com.example.challenge_mottu.model.Motoqueiro;
 import com.example.challenge_mottu.model.Role;
 import com.example.challenge_mottu.repository.MotoRepository;
 import com.example.challenge_mottu.repository.MotoqueiroRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -47,9 +48,12 @@ public class MotoqueiroService {
         motoqueiro1.setDataAniversario(motoqueiro.getDataAniversario());
         motoqueiro1.setNomeUser(motoqueiro.getNomeUser());
         motoqueiro1.setEndereco(viaCepService.buscarEnderecoPorCEP(motoqueiro.getEndereco().getCep()));
+        motoqueiro1.setPassword(passwordEncoder.encode(motoqueiro.getPassword()));
+        motoqueiro1.setEmail(motoqueiro.getEmail());
         repository.save(motoqueiro1);
     }
 
+    @Transactional
     public void remover(String cpf){
         String cpfLimpo = cpf.replaceAll("[^0-9]", "");
         Motoqueiro motoqueiro = repository.findByCpfUser(cpfLimpo);

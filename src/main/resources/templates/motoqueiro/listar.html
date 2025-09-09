@@ -21,9 +21,9 @@
 
 <ul>
     <li th:each="motoqueiro : ${motoqueiros}">
-        <h2 th:text="${motoqueiro.nomeUser}">Nome do Admin</h2>
-        <p th:text="${motoqueiro.cpfUser}">CPF do Admin</p>
-        <p th:text="${motoqueiro.dataAniversario}">Data de aniversario do Admin</p>
+        <h2 th:text="${motoqueiro.nomeUser}">Nome do Motoqueiro</h2>
+        <p th:text="${motoqueiro.cpfUser}">CPF do Motoqueiro</p>
+        <p th:text="${motoqueiro.dataAniversario}">Data de aniversario do Motoqueiro</p>
 
         <form th:action="@{'/motoqueiro/editar/' + ${motoqueiro.cpfUser}}" method="get" style="display:inline;">
             <button type="submit">Atualizar</button>
