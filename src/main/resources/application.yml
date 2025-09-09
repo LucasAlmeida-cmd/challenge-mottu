@@ -4,14 +4,6 @@ server:
     include-message: always
     include-binding-errors: always
 
-#spring:
-#  datasource:
-#    password: #Coloque_seu_password_aqui
-#    url: jdbc:postgresql://USER:PASSWORD@INTERNAL_HOST:PORT/SUA_DATABASE #atualize aqui com seus dados
-#    username: #Coloque_seu_username_aqui
-#    driver-class-name: org.postgresql.Driver
-#    hikari:
-#      auto-commit: false
 
 spring:
   datasource:
@@ -19,7 +11,7 @@ spring:
     password: admin
     username: postgres
   mvc:
-    hidden method:
+    hiddenmethod:
       filter:
         enabled: true
 
