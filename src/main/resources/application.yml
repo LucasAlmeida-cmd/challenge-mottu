@@ -1,19 +1,23 @@
----
 server:
   error:
     include-message: always
     include-binding-errors: always
 
-
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/challenge_mottu
-    password: admin
     username: postgres
+    password: admin
+
   mvc:
     hiddenmethod:
       filter:
         enabled: true
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
 
   jpa:
     hibernate:
@@ -23,4 +27,3 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
     show-sql: true
-...
