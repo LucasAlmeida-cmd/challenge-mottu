@@ -1,5 +1,6 @@
 package com.example.challenge_mottu.service;
 
+import com.example.challenge_mottu.exceptions.MotoqueiroEmailException;
 import com.example.challenge_mottu.exceptions.UsuarioNotFoundException;
 import com.example.challenge_mottu.model.Moto;
 import com.example.challenge_mottu.model.Motoqueiro;
@@ -12,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MotoqueiroService {
@@ -28,7 +30,10 @@ public class MotoqueiroService {
 
 
 
-    public void cadastrar(Motoqueiro motoqueiro){
+    public void cadastrar(Motoqueiro motoqueiro) throws MotoqueiroEmailException {
+        if (repository.findByEmail(motoqueiro.getEmail()).isPresent()) {
+            throw new MotoqueiroEmailException("Email já cadastrado: " + motoqueiro.getEmail());
+        }
         motoqueiro.setEndereco(viaCepService.buscarEnderecoPorCEP(motoqueiro.getEndereco().getCep()));
         motoqueiro.setPassword(passwordEncoder.encode(motoqueiro.getPassword()));
         motoqueiro.setRole(Role.MOTOQUEIRO);
@@ -70,7 +75,7 @@ public class MotoqueiroService {
     public Motoqueiro buscarPorCpf(String cpf) {
         return repository.findByCpfUser(cpf);
     }
-    public Motoqueiro buscarPorEmail(String email){
+    public Optional<Motoqueiro> buscarPorEmail(String email){
         return repository.findByEmail(email);
     }
 }
