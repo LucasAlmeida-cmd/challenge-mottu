@@ -30,9 +30,14 @@ public class ContentController {
 
     @GetMapping("/motoqueiro/dashboard")
     public String dashboardMotoqueiro(Principal principal, Model model) {
-        Optional<Motoqueiro> motoqueiro = motoqueiroService.buscarPorEmail(principal.getName());
-        model.addAttribute("motoqueiro", motoqueiro);
-        return "dashbord-motoqueiro";
+        Optional<Motoqueiro> motoqueiroOptional = motoqueiroService.buscarPorEmail(principal.getName());
+        if (motoqueiroOptional.isPresent()) {
+            Motoqueiro motoqueiro = motoqueiroOptional.get();
+            model.addAttribute("motoqueiro", motoqueiro);
+            return "dashbord-motoqueiro";
+        } else {
+            return "redirect:/login?error=userNotFound";
+        }
     }
 
 
