@@ -7,4 +7,6 @@ public interface MotoqueiroRepository extends JpaRepository<Motoqueiro, Long> {
     Motoqueiro findByCpfUser(String cpf);
     Motoqueiro findMotoqueiroByCnh(String cnh);
     void deleteByCpfUser(String cpfUser);
+
+    Motoqueiro findByEmail(String email);
 }

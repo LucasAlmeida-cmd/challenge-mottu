@@ -31,7 +31,7 @@ public abstract class User {
     @Column(name = "senha_usuario", nullable = false, length = 100)
     private String password;
 
-    @Column(name = "email_usuario", nullable = false, length = 50)
+    @Column(name = "email_usuario", nullable = false, length = 50, unique = true)
     private String email;
 
 

@@ -48,6 +48,19 @@ public class MotoqueiroController {
         return "redirect:/motoqueiro";
     }
 
+    @GetMapping("/editar/fechada/{cpf}")
+    public String carregarFormularioEdicaoTelaFechada(@PathVariable String cpf, Model model) {
+        Motoqueiro motoqueiro = service.buscarPorCpf(cpf);
+        model.addAttribute("motoqueiro", motoqueiro);
+        return "motoqueiro/formulario-atualizar-motoqueiro-tela-fechada";
+    }
+
+    @PutMapping("/editar/fechada/{cpf}")
+    public String atualizarTelaFechada(@PathVariable String cpf, @ModelAttribute Motoqueiro motoqueiro){
+        service.atualiza(cpf, motoqueiro);
+        return "dashbord-motoqueiro";
+    }
+
     @DeleteMapping("/{cpf}")
     public String deletarPeloCpf(@PathVariable String cpf){
         service.remover(cpf.replaceAll("[^0-9]", ""));

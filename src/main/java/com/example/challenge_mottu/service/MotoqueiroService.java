@@ -70,4 +70,7 @@ public class MotoqueiroService {
     public Motoqueiro buscarPorCpf(String cpf) {
         return repository.findByCpfUser(cpf);
     }
+    public Motoqueiro buscarPorEmail(String email){
+        return repository.findByEmail(email);
+    }
 }

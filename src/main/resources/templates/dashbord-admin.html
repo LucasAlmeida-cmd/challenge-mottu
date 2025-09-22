@@ -4,80 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashbord Admin</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
+    <link rel="stylesheet" th:href="@{/css/dashbords.css}">
 
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px 10px;
-            text-align: center;
-        }
-
-        nav {
-            display: flex;
-            justify-content: center;
-            background-color: #333;
-        }
-
-        nav a {
-            color: white;
-            padding: 14px 20px;
-            text-decoration: none;
-            text-align: center;
-        }
-
-        nav a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-
-        main {
-            padding: 20px;
-        }
-
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-        .logoutButton{
-            background-color: #FF0000;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .logoutButtonDiv {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
-        .homeButtom{
-            background-color: #3498db;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-family: 'Arial', sans-serif;
-        }
-    </style>
 </head>
 <body>
     <header>
         <h1>Página ADMIN</h1>
-        <div th:replace="~{fragments/logout-admin :: logoutButtonAdmin}"></div>
+        <p>Olá, <span th:text="${nomeAdmin}">Admin</span>!</p>
+        <div th:replace="~{fragments/logout :: logoutButton}"></div>
     </header>
     <nav>
         <a href="/admin">Administradores</a>

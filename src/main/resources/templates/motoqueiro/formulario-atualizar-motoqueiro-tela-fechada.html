@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Atualizar Motoqueiro</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+<body>
+<h1>Atualizar Motoqueiro</h1>
+
+
+<form th:action="@{/motoqueiro/editar/fechada/{cpf}(cpf=${motoqueiro.cpfUser})}"
+      th:object="${motoqueiro}"
+      method="post">
+    <input type="hidden" name="_method" value="put" />
+
+    <label>Nome:</label>
+    <input type="text" th:field="*{nomeUser}" required />
+
+    <label>Data de aniversário:</label>
+    <input type="date" th:field="*{dataAniversario}" required />
+
+    <label>CNH:</label>
+    <input type="text" th:field="*{cnh}" required />
+
+    <label>CEP:</label>
+    <input type="text" th:field="*{endereco.cep}" required />
+
+    <label>Email:</label>
+    <input type="text" th:field="*{email}" required />
+
+    <label>Senha:</label>
+    <input type="text" th:field="*{password}" required />
+
+    <button type="submit">Atualizar</button>
+</form>
+
+</body>
+</html>
