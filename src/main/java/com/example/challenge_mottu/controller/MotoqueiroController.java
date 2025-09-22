@@ -58,7 +58,7 @@ public class MotoqueiroController {
     @PutMapping("/editar/fechada/{cpf}")
     public String atualizarTelaFechada(@PathVariable String cpf, @ModelAttribute Motoqueiro motoqueiro){
         service.atualiza(cpf, motoqueiro);
-        return "dashbord-motoqueiro";
+        return "redirect:/motoqueiro/dashboard";
     }
 
     @DeleteMapping("/{cpf}")
