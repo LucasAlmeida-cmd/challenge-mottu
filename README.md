@@ -108,23 +108,23 @@ Siga os passos abaixo para executar o projeto na sua máquina.
 
 3.  *Verifique as dependências do Maven:*
     
- * Crie um novo banco de dados no seu PostgreSQL (ex: `challenge_mottu`).
-    * Navegue até o arquivo `src/main/resources/application.yml`.
-    * Configure as propriedades de conexão com o seu banco de dados local:
-        ```properties
-        spring:
-          datasource:
-            url: jdbc:postgresql://localhost:5432/challenge_mottu
-            username: seu_usuario_postgres
-            password: sua_senha_postgres
-        ```
-    * O **Flyway** cuidará de criar e atualizar as tabelas do banco de dados automaticamente quando a aplicação iniciar.
-3.  **Compile e instale as dependências com o Maven:**
+    * Crie um novo banco de dados no seu PostgreSQL (ex: `challenge_mottu`).
+       * Navegue até o arquivo `src/main/resources/application.yml`.
+       * Configure as propriedades de conexão com o seu banco de dados local:
+           ```properties
+           spring:
+             datasource:
+               url: jdbc:postgresql://localhost:5432/challenge_mottu
+               username: seu_usuario_postgres
+               password: sua_senha_postgres
+           ```
+       * O **Flyway** cuidará de criar e atualizar as tabelas do banco de dados automaticamente quando a aplicação iniciar.
+4.  **Compile e instale as dependências com o Maven:**
     ```bash
     mvn clean install -DskipTests
     ```
 
-4.  **Execute a aplicação:**
+5.  **Execute a aplicação:**
     ```bash
     mvn spring-boot:run
     ```
@@ -133,7 +133,7 @@ Siga os passos abaixo para executar o projeto na sua máquina.
     java -jar target/challenge-mottu-0.0.1-SNAPSHOT.jar
     ```
 
-5.  A aplicação estará disponível em `http://localhost:8080`.
+6.  A aplicação estará disponível em `http://localhost:8080`.
 
 ---
 
