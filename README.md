@@ -1,6 +1,5 @@
 # 💻 Challenge Mottu
 
-> Um subtítulo curto e impactante que descreve o projeto em uma linha. Ex: "Um sistema de gerenciamento de tarefas com foco em produtividade."
 
 ![Status](https://img.shields.io/badge/status-em--desenvolvimento-green)
 
