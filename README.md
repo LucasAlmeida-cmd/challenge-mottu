@@ -101,10 +101,12 @@ Siga os passos abaixo para executar o projeto na sua máquina.
 
 1.  *Clone o repositório:*
     bash
-    git clone [https://github.com/LucasAlmeida-cmd/challenge-mottu.git 
+    git clone [https://github.com/LucasAlmeida-cmd/challenge-mottu.git
+
+2. Mudar a branch para a  ```mvc```
     
 
-2.  *Verifique as dependências do Maven:*
+3.  *Verifique as dependências do Maven:*
     
  * Crie um novo banco de dados no seu PostgreSQL (ex: `challenge_mottu`).
     * Navegue até o arquivo `src/main/resources/application.yml`.
