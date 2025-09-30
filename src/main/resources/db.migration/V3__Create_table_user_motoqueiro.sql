@@ -1,5 +1,3 @@
--- V3__Create_table_user_motoqueiro.sql
--- Cria a tabela para a subclasse Motoqueiro, incluindo os campos da classe Endereco.
 
 CREATE TABLE tb_user_motoqueiro (
                                     id_motoqueiro BIGINT NOT NULL PRIMARY KEY,

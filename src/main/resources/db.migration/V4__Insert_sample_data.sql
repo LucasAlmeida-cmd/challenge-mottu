@@ -1,6 +1,4 @@
--- V4__Insert_sample_data.sql
--- Insere dados de exemplo para um Administrador e um Motoqueiro.
--- ⚠️ As senhas aqui estão em texto plano e devem ser hasheadas em produção.
+
 
 -- Inserindo um Administrador
 INSERT INTO tb_user (id, user_type, nome_usuario, data_aniversario_usuario, senha_usuario, email_usuario, role)

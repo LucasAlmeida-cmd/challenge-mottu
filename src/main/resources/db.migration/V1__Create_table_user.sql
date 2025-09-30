@@ -1,6 +1,4 @@
--- V1__Create_table_user.sql
--- Cria a tabela base para todos os usuários (estratégia JOINED).
--- Esta tabela deve ser a primeira, pois as outras dependem dela.
+
 
 CREATE TABLE tb_user (
                          id BIGSERIAL PRIMARY KEY,

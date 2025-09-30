@@ -1,5 +1,4 @@
--- V2__Create_table_user_admin.sql
--- Cria a tabela para a subclasse Administrador, que herda de tb_user.
+
 
 CREATE TABLE tb_user_admin (
                                id_admin BIGINT NOT NULL PRIMARY KEY,
