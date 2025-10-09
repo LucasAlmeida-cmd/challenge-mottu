@@ -61,12 +61,12 @@ public class SecurityConfig {
                             .permitAll();
                 })
                 .authorizeHttpRequests(registry -> {
+                    registry.requestMatchers("/css/**", "/login", "/health").permitAll();
+
                     registry.requestMatchers("/motoqueiro/dashboard", "/motoqueiro/editar/fechada/**")
                             .hasRole("MOTOQUEIRO");
                     registry.requestMatchers("/moto/**", "/vaga/**", "/patio/**",
                             "/motoqueiro/**", "/secao/**", "/index", "/admin/**").hasAnyRole("ADMIN");
-
-                    registry.requestMatchers("/css/**", "/login").permitAll();
                     registry.anyRequest().authenticated();
                 })
                 .build();

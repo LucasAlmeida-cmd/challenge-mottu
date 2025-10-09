@@ -5,9 +5,9 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/challenge_mottu
-    username: postgres
-    password: admin
+    url: jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL
+    username: RM557569
+    password: 110602
 
   mvc:
     hiddenmethod:
@@ -24,6 +24,6 @@ spring:
       ddl-auto: update
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
+        dialect: org.hibernate.dialect.OracleDialect
         format_sql: true
     show-sql: true
