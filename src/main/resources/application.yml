@@ -5,9 +5,9 @@ server:
 
 spring:
   datasource:
-    url: jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL
-    username: RM557569
-    password: 110602
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
 
   mvc:
     hiddenmethod:
@@ -24,6 +24,6 @@ spring:
       ddl-auto: update
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.OracleDialect
+        dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
     show-sql: true
