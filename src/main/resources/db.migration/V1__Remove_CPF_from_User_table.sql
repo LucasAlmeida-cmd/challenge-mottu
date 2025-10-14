@@ -1,0 +1,1 @@
+ALTER TABLE tb_user DROP COLUMN IF EXISTS cpf_usuario;
