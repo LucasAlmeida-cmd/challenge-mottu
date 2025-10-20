@@ -9,6 +9,7 @@ import com.example.challenge_mottu.repository.MotoRepository;
 import com.example.challenge_mottu.repository.MotoqueiroRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -77,5 +78,16 @@ public class MotoqueiroService {
     }
     public Optional<Motoqueiro> buscarPorEmail(String email){
         return repository.findByEmail(email);
+    }
+
+    public void atualizaSenha(String email, String novaSenha) {
+        Optional<Motoqueiro> motoqueiroOpt = repository.findByEmail(email);
+        if (motoqueiroOpt.isPresent()) {
+            Motoqueiro motoqueiro = motoqueiroOpt.get();
+            motoqueiro.setPassword(passwordEncoder.encode(novaSenha));
+            repository.save(motoqueiro);
+        } else {
+            throw new UsernameNotFoundException("Usuário com e-mail " + email + " não encontrado.");
+        }
     }
 }

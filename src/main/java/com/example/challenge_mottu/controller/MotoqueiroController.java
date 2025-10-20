@@ -29,10 +29,25 @@ public class MotoqueiroController {
     }
 
 
+
     @GetMapping("/novo")
     public String novomMotoqueiroForm(Model model) {
         model.addAttribute("motoqueiro", new Motoqueiro());
         return "motoqueiro/formulario-motoqueiro";
+    }
+
+    @GetMapping("/recuperarSenha")
+    public String recuperarSenha() {
+        return "motoqueiro/recuperar-senha";
+    }
+
+    @PostMapping("/atualizarSenha")
+    public String atualizarSenha(
+            @RequestParam("email") String email,
+            @RequestParam("novaSenha") String novaSenha
+    ) {
+        service.atualizaSenha(email, novaSenha);
+        return "redirect:/login";
     }
 
     @GetMapping("/editar/{cpf}")
