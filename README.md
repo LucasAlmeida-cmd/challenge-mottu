@@ -150,3 +150,5 @@ Se você quiser contribuir com este projeto, siga estas etapas:
 6.  Existem alguns campos que são unicos.
 7.  Para uma demonstração mais adequada assitir a esse [ video](https://www.youtube.com/watch?v=0XtMN1We-Dw).
 8.  Vídeo da apresentação final [ video](https://youtu.be/SMHjysanAKI).
+9.  Link do deploy do render:[ link render](https://challenge-mottu.onrender.com).
+
