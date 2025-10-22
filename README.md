@@ -30,11 +30,12 @@ Aqui está uma lista das principais funcionalidades da aplicação:
 
 Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 
-* *Linguagem:* [Ex:Java 17]
+* *Linguagem:* [Java 17]
 * *Framework Backend:* [Spring Boot]
-* *Banco de Dados:* [Ex:PostgreSQL]
-* *Frontend:* [Ex: HTML5, CSS3, JavaScript, Thymeleaf]
-* *Gerenciador de Dependências:* [Ex:Maven]
+* *Banco de Dados:* [PostgreSQL, Oracle]
+* *Frontend:* [HTML5, CSS3, JavaScript, Thymeleaf]
+* *Gerenciador de Dependências:* [Maven]
+* *Deploy:* [Render, Azure]
 
 ---
 
@@ -148,4 +149,4 @@ Se você quiser contribuir com este projeto, siga estas etapas:
 5.  Utilziar CPF válido para o Motoqueiro. Site para geração de CPF: [ neste link](https://www.4devs.com.br/gerador_de_cpf).
 6.  Existem alguns campos que são unicos.
 7.  Para uma demonstração mais adequada assitir a esse [ video](https://www.youtube.com/watch?v=0XtMN1We-Dw).
-
+8.  Vídeo da apresentação final [ video](https://youtu.be/SMHjysanAKI).
