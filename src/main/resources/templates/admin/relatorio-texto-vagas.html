@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Relatório de Vagas Disponíveis</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<section>
+    <h1>Relatório Gerado pela Procedure `pr_gerar_relatorio_vagas`</h1>
+
+    <p>O texto abaixo foi gerado 100% no Oracle e retornado para o Java:</p>
+
+    <pre th:text="${relatorio}"
+         style="background-color: #333; color: #00ff00; border: 1px solid #ccc; padding: 15px; font-family: 'Courier New', monospace;">
+        ... carregando relatório ...
+    </pre>
+
+    <br/>
+    <a href="/admin/dashboard">Voltar para Home</a>
+
+</section>
+</body>
+</html>

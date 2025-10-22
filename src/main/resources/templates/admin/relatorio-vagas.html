@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Relatório de Vagas</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<section>
+    <h1 th:text="|Resultado da Procedure para o Pátio ID: ${patioId}|">
+        Relatório de Vagas
+    </h1>
+
+    <p>O JSON abaixo foi retornado diretamente pela procedure
+        <code>pr_patio_secoes_vagas</code> do Oracle:</p>
+
+    <pre th:text="${jsonResult}"
+         style="background-color: #f4f4f4; border: 1px solid #ccc; padding: 15px;">
+        ... carregando JSON ...
+    </pre>
+
+    <br/>
+    <a href="/admin/dashboard">Voltar para Home</a>
+
+</section>
+</body>
+</html>

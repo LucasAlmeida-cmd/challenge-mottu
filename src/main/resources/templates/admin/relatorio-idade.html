@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultado Validação</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<section>
+    <h1 th:text="|Resultado da Função para o Usuário ID: ${userId}|">
+        Resultado Validação
+    </h1>
+
+    <p>A string abaixo foi retornada diretamente pela função
+        <code>fn_valida_idade_user</code> do Oracle:</p>
+
+    <h3 th:text="${resultado}"
+        style="background-color: #f4f4f4; border: 1px solid #ccc; padding: 15px;">
+        ...
+    </h3>
+
+    <br/>
+    <a href="/admin/dashboard">Voltar para Home</a>
+
+</section>
+</body>
+</html>
