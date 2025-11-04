@@ -72,17 +72,15 @@ public class PatioController {
 
     // chamadas procedures:
 
-    @GetMapping("/relatorio/json/{id}") // <-- MUDANÇA AQUI
+    @GetMapping("/relatorio/json/{id}")
     public String relatorioVagasPatio(@PathVariable Long id, Model model) {
-        // Chame apenas UMA vez
         String jsonResultado = patioService.chamarProcedureDeVagas(id);
         model.addAttribute("jsonResult", jsonResultado);
         model.addAttribute("patioId", id);
         return "admin/relatorio-vagas";
     }
 
-    // ROTA 2: Mude para um prefixo único, como /texto/
-    @GetMapping("/relatorio/texto") // <-- MUDANÇA AQUI (removi o /gerar-vagas para ficar mais limpo)
+    @GetMapping("/relatorio/texto")
     public String gerarRelatorioVagas(Model model) {
         String relatorioResultado = patioService.chamarPrGerarRelatorioVagas();
         model.addAttribute("relatorio", relatorioResultado);
@@ -92,14 +90,9 @@ public class PatioController {
 
     @GetMapping("/relatorio/validar-idade/{id}")
     public String relatorioValidaIdade(@PathVariable Long id, Model model) {
-
-        // Chama a função que retorna a string
         String resultadoValidacao = patioService.chamarFnValidaIdade(id);
-
         model.addAttribute("userId", id);
         model.addAttribute("resultado", resultadoValidacao);
-
-        // Vamos criar esta nova página HTML
         return "admin/relatorio-idade";
     }
 
