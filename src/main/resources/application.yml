@@ -5,9 +5,9 @@ server:
 
 spring:
   datasource:
-    url: ${SPRING_DATASOURCE_URL}
-    username: ${SPRING_DATASOURCE_USERNAME}
-    password: ${SPRING_DATASOURCE_PASSWORD}
+    url: jdbc:sqlserver://sprint4.database.windows.net:1433;database=sprint4;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
+    username: adminsprint4
+    password: Fiap2TDSPY2025
 
   mvc:
     hiddenmethod:
