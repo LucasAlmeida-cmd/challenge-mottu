@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MotoFindr | Demonstração</title>
+    <link rel="icon" type="image/png" th:href="@{/favicon.png}">
+    <style>
+        :root {
+            --bg-slate-900: #0f172a;
+            --bg-slate-800: #1e293b;
+            --text-slate-50: #f8fafc;
+            --text-slate-300: #cbd5e1;
+            --text-slate-400: #94a3b8;
+            --blue-500: #3b82f6;
+            --blue-600: #2563eb;
+            --slate-700: #334155;
+            --slate-600: #475569;
+        }
+
+        body {
+            background-color: var(--bg-slate-900);
+            color: var(--text-slate-50);
+            font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 90%;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 1rem; tracking-tight: -0.025em; }
+        .highlight { color: var(--blue-500); }
+
+        .description {
+            font-size: 1.25rem;
+            color: var(--text-slate-400);
+            max-width: 800px;
+            margin: 0 auto 4rem auto;
+            line-height: 1.6;
+        }
+
+        .tag {
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--blue-500);
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .gif-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        @media (min-width: 768px) {
+            .gif-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .gif-card {
+            background-color: var(--bg-slate-800);
+            border: 1px solid var(--slate-700);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            text-align: left;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .gif-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--slate-600);
+            box-shadow: 0 20px 25px -5px rgba(59, 130, 246, 0.1);
+        }
+
+        .gif-card h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text-slate-100);
+            margin: 0 0 1rem 0;
+        }
+
+        .gif-card p {
+            color: var(--text-slate-400);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin: 0 0 1.5rem 0;
+            flex-grow: 1;
+        }
+
+        .gif-wrapper {
+            width: 100%;
+            background: linear-gradient(to bottom right, #1e293b, #0f172a);
+            border-radius: 1rem;
+            overflow: hidden;
+            border: 1px solid var(--slate-700);
+            margin-bottom: 1rem;
+        }
+
+        .gif-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background-color: var(--blue-600);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3);
+            font-size: 1.1rem;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--blue-500);
+            transform: translateY(-2px);
+        }
+
+        .credentials-box {
+            background-color: rgba(30, 41, 59, 0.5);
+            border: 1px dashed var(--slate-600);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+            display: inline-block;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 2.5rem;
+            color: var(--text-slate-500);
+            font-size: 0.875rem;
+            border-top: 1px solid #1e293b;
+            width: 100%;
+            background-color: rgba(15, 23, 42, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <span class="tag">Challenge Mottu</span>
+    <h1>Conheça o <span class="highlight">MotoFindr</span> em Ação</h1>
+    <p class="description">
+        Explore as funcionalidades de gerenciamento inteligente de frotas e logística de pátios desenvolvidas com Spring Boot e Thymeleaf.
+    </p>
+
+    <div class="gif-grid">
+
+        <div class="gif-card">
+            <div class="gif-wrapper">
+                <img th:src="@{/images/video1.gif}" alt="GIF: Login do Sistema">
+            </div>
+            <h3>1. Autenticação Segura</h3>
+            <p>Acesso restrito ao painel administrativo utilizando credenciais de segurança e controle de sessão.</p>
+        </div>
+
+        <div class="gif-card">
+            <div class="gif-wrapper">
+                <img th:src="@{/images/video2.gif}" alt="GIF: Gerenciamento de Admin">
+            </div>
+            <h3>2. Gestão de Administradores</h3>
+            <p>Controle total sobre os perfis com privilégios elevados, permitindo a manutenção da equipe de gestão.</p>
+        </div>
+
+        <div class="gif-card">
+            <div class="gif-wrapper">
+                <img th:src="@{/images/video3.gif}" alt="GIF: Gerenciamento de Motoqueiros">
+            </div>
+            <h3>3. Gestão de Motoqueiros</h3>
+            <p>Cadastro e manutenção de dados dos colaboradores, vinculando informações essenciais para a operação.</p>
+        </div>
+
+        <div class="gif-card">
+            <div class="gif-wrapper">
+                <img th:src="@{/images/video4.gif}" alt="GIF: Gerenciamento de Pátios">
+            </div>
+            <h3>4. Logística de Pátios</h3>
+            <p>Configuração e organização dos espaços físicos destinados ao armazenamento da frota.</p>
+        </div>
+
+        <div class="gif-card">
+            <div class="gif-wrapper">
+                <img th:src="@{/images/video5.gif}" alt="GIF: Gerenciamento de Seções">
+            </div>
+            <h3>5. Organização de Seções</h3>
+            <p>Subdivisão estratégica dos pátios para facilitar a localização e o fluxo de movimentação dos veículos.</p>
+        </div>
+
+        <div class="gif-card">
+            <div class="gif-wrapper">
+                <img th:src="@{/images/video6.gif}" alt="GIF: Gerenciamento de Vagas">
+            </div>
+            <h3>6. Controle de Vagas</h3>
+            <p>Monitoramento preciso da ocupação, permitindo a alocação eficiente de cada unidade da frota.</p>
+        </div>
+
+        <div class="gif-card" style="grid-column: 1 / -1; max-width: 500px; margin: 0 auto;">
+            <div class="gif-wrapper">
+                <img th:src="@{/images/video7.gif}" alt="GIF: Gerenciamento de Motos">
+            </div>
+            <h3>7. Inventário de Veículos</h3>
+            <p>Rastreamento completo da frota de motos, com controle de status e vinculação direta às vagas disponíveis.</p>
+        </div>
+
+    </div>
+
+    <div style="margin-top: 2rem;">
+        <div class="credentials-box">
+            <p style="margin: 0; font-size: 0.9rem; color: var(--text-slate-300);">
+                <strong>Acesso para demonstração:</strong><br>
+                Usuário: <code class="highlight">admin</code> | Senha: <code class="highlight">admin</code>
+            </p>
+        </div>
+        <br>
+        <a th:href="@{/login}" class="btn-primary">Acessar Sistema MotoFindr</a>
+    </div>
+</div>
+
+<footer>
+    © <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}"></span>
+    Lucas Almeida • Tecnologias: <span class="highlight">Java 17, Spring Boot & PostgreSQL</span>.
+</footer>
+
+</body>
+</html>

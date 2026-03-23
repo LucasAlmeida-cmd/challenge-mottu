@@ -1,13 +1,14 @@
 server:
+  port: 8091
   error:
     include-message: always
     include-binding-errors: always
-
+#  jdbc:postgresql://localhost:5432/portfolio_mottu_db
 spring:
   datasource:
-    url: jdbc:oracle:thin:@oracle.fiap.com.br:1521:ORCL
-    username: RM557569
-    password: 110602
+    url: jdbc:postgresql://localhost:5432/challenge_mottu
+    username: postgres
+    password: admin
 
   mvc:
     hiddenmethod:
@@ -24,7 +25,7 @@ spring:
       ddl-auto: update
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.OracleDialect
+        dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
     show-sql: true
 
