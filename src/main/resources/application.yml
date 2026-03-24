@@ -3,12 +3,13 @@ server:
   error:
     include-message: always
     include-binding-errors: always
-#  jdbc:postgresql://localhost:5432/portfolio_mottu_db
+  forward-headers-strategy: native # Adicionado para funcionar bem com o Nginx da VPS
+
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/challenge_mottu
-    username: postgres
-    password: admin
+    url: jdbc:postgresql://localhost:5432/portfolio_mottu_db
+    username: portfolio_lucasalmeida
+    password: Lucas2002--
 
   mvc:
     hiddenmethod:
@@ -16,16 +17,11 @@ spring:
         enabled: true
 
   flyway:
-    enabled: true
-    locations: classpath:db/migration
-    baseline-on-migrate: true
-
-  jpa:
-    hibernate:
-      ddl-auto: update
-    properties:
+    enabled: false  # DESLIGADO PARA SEMPRE
+    jpa:
       hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-        format_sql: true
-    show-sql: true
-
+        ddl-auto: update # Apenas atualiza se você mudar uma entidade, não recria nada
+      properties:
+        hibernate:
+          temp:
+            use_jdbc_metadata_defaults: false # Evita consulta de sistema que dá erro de permissão
